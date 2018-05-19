@@ -12,10 +12,8 @@ myLanding.directive('myLanding', function () {
    };
 });
 
-myLanding.controller('myLandingCtrl', function($scope) {
-    $scope.testFunction = testFunction;
+myLanding.controller('myLandingCtrl', function($scope, $rootScope) {
 
-    function testFunction() {
-        console.log('landing');
-    }
+    console.log($rootScope.activeUser);
+
 });

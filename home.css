@@ -1,3 +1,4 @@
+/* NAV */
 nav {
     position:  absolute;
     top: 0;
@@ -65,4 +66,63 @@ nav {
     display:  flex;
     justify-content:  center;
     align-items: center;
+}
+
+/* LOG IN CONTAINER */
+.home-login-container {
+    width: 100%;
+    height: 50%;
+    display:  flex;
+    justify-content:  center;
+    align-items:  center;
+}
+
+.home-user-login {
+    display:  flex;
+    flex-direction: column;
+    justify-content:  center;
+    align-items: center;
+    min-width: 75%;
+    padding: 20px;
+}
+
+.inputs {
+    width: 100%
+}
+
+.btns {
+    display:  flex;
+    flex-direction: column;
+    justify-content:  center;
+    align-items:  center;
+}
+
+.save-creds {
+    font-size:  0.75em;
+    margin:  10px;
+    display:  flex;
+    justify-content:  center;
+    align-items:  center;
+}
+
+#saveCreds {
+    position:  relative;
+}
+
+#saveCreds::after {
+    content: '';
+    position:  absolute;
+    top: -1px;
+    width: 12px;
+    height: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e7e7e7;
+    border: none;
+    font-size: 1.2em;
+    cursor:  pointer;
+}
+#saveCreds.checked::after {
+    content: '\2713';
 }

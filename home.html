@@ -16,7 +16,33 @@
         </div>
     </nav>
     <div class="home-content-container">
-        <div ng-if="selectedApp === 'landing'" my-landing></div>
+        <!-- Log In Content -->
+        <div ng-show="!loggedIn" class="home-login-container">
+            <div class="home-user-login">
+                <div class="inputs">
+                    <div class="input-container">
+                        <input type="text" required id="logInEmail">
+                        <span class="one"></span>
+                        <label class="label">Email</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="password" required id="logInPassword">
+                        <span class="one"></span>
+                        <label class="label">Password</label>
+                    </div>
+                </div>
+                <div class="btns">
+                    <button class="secondary" ng-click="logInFromInput()">Log In</button>
+                    <button class="primary">Create Profile</button>
+                </div>
+                <div class="save-creds">
+                    <input change="toggleCheckmark()" id="saveCreds" type="checkbox">
+                    <label for="saveCreds">Save Password</label>
+                </div>
+            </div>
+        </div>
+        <!-- Modules -->
+        <div ng-if="selectedApp === 'landing' && loggedIn" my-landing></div>
         <div ng-if="selectedApp === 'network'" my-network></div>
         <div ng-if="selectedApp === 'watch'" my-watch></div>
         <div ng-if="selectedApp === 'todos'" my-todos></div>
