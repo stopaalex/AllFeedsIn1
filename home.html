@@ -7,7 +7,9 @@
             <span>1</span>
         </div>
         <div class="home-menu-container">
-            <div class="profile-img"></div>
+            <div class="profile-img">
+                <img id="loggedInUserImg">
+            </div>
             <div class="menu-btn">
                 <div></div>
                 <div></div>
@@ -38,6 +40,9 @@
                 <div class="save-creds">
                     <input change="toggleCheckmark()" id="saveCreds" type="checkbox">
                     <label for="saveCreds">Save Password</label>
+                </div>
+                <div class="TEST TEST">
+                    {{activeUser}}
                 </div>
             </div>
         </div>

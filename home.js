@@ -29,7 +29,6 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $scope.databse;
     $scope.storage;
     $scope.users = [];
-    $rootScope.activeUser;
     $scope.loggedIn = false;
     $scope.saveCredsCheck = document.querySelector('#saveCreds');
     $scope.saveChecked = false;
@@ -59,6 +58,8 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
                 // console.log(childSnapshot.val());
                 $scope.users.push(childSnapshot.val());
             });
+        }).then(function() {
+            checkforSavedCreds();
         });
     }
 
@@ -69,44 +70,40 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
         $scope.users.forEach(function(user) {
             if (user.email === $scope.inputEmail.value && user.pass === $scope.inputPassword.value) {
                 $rootScope.activeUser = user;
-                var activeUserLocal = $rootScope.activeUser;
-
                 if ($scope.saveChecked) {
-                    delete activeUserLocal.pass;
-                    window.localStorage.setItem('AFiOneSavedUser', JSON.stringify(activeUserLocal));
+                    // delete activeUserLocal.pass;
+                    window.localStorage.setItem('AFiOneSavedUser', JSON.stringify($rootScope.activeUser));
                 }
-
                 $scope.loggedIn = true;
+                $scope.userProfPic = document.querySelector('#loggedInUserImg');
+                $scope.userProfPic.src = $rootScope.activeUser.imgUrl;
             }
         });
     }
-
+    
     function logInWithCredentials(savedCredentials) {
-        var ref = $scope.database.ref("users/" + savedCredentials.unique_ID + "");
-        var credentialsFromLS;
+        $scope.users.forEach(function(user) {
+            if (user.email === savedCredentials.email && user.pass === savedCredentials.pass) {
+                $rootScope.activeUser = user;
+                $scope.loggedIn = true;
+                // Forcing the digest since this stirng of functions is automatically run and angular doesn't like that ish apparently...
+                $scope.$apply();
+                $scope.userProfPic = document.querySelector('#loggedInUserImg');
+                $scope.userProfPic.src = $rootScope.activeUser.imgUrl;
 
-        ref.once("value", function (snapshot) {
-            credentialsFromLS = snapshot.val();
-            $rootScope.activeUser = credentialsFromLS;
-            $scope.loggedIn = true;
+            }
         });
-
-        return true;
     }
-
+    
     function checkforSavedCreds() {
-        var returnBool;
         var savedCredentials = JSON.parse(window.localStorage.getItem('AFiOneSavedUser'));
         if (savedCredentials) {
-            returnBool = logInWithCredentials(savedCredentials);
+            logInWithCredentials(savedCredentials);
         }
-        return returnBool;
     }
 
     function initialize() {
         initializeFirebase();
-
-        $scope.loggedIn = checkforSavedCreds();
 
         $scope.saveCredsCheck.addEventListener('change', function() {
             if ($scope.saveCredsCheck.checked) {

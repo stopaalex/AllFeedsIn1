@@ -13,7 +13,4 @@ myLanding.directive('myLanding', function () {
 });
 
 myLanding.controller('myLandingCtrl', function($scope, $rootScope) {
-
-    console.log($rootScope.activeUser);
-
 });

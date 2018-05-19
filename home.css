@@ -34,11 +34,25 @@ nav {
 }
 
 .profile-img {
+    display:  flex;
+    justify-content:  center;
+    align-items:  center;
     width: 30px;
     height: 30px;
     border: 2px solid #e7e7e7;
     border-radius: 100%;
     margin-right: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 250ms;
+}
+
+.profile-img:hover {
+    border: 2px solid #999999;
+}
+
+.profile-img img {
+    width: 100%;
 }
 
 .menu-btn {
