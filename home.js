@@ -46,15 +46,15 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
             messagingSenderId: "492815653675"   
         };
         firebase.initializeApp(config);
-        $scope.database = firebase.database();
-        $scope.storage = firebase.storage();
+        $rootScope.database = firebase.database();
+        $rootScope.storage = firebase.storage();
 
         getUsers();
     }
 
     function getUsers() {
         $scope.users = [];
-        var ref = $scope.database.ref("users");
+        var ref = $rootScope.database.ref("users");
 
         ref.once("value", function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
