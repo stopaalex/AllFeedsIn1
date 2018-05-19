@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="myApplication">
+<html lang="en" ng-app="myApplication" controller="myAppCtrl as myCtrl">
 
 <html>
-    <head>
-    </head>
-    <body>
-      Some Content
-        <div my-weather>test</div>
 
+<head>
+    <title>AFi1</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <link rel="stylesheet" type="text/css" href="home.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg"
+        crossorigin="anonymous">
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+</head>
 
-        <script src="jquery-min-3.3.1.js"></script>
-        <script src="angular-min-1.6.js"></script>
-        
-        <script src="app.js"></script>
-        <script src="weatherModule/weatherModule.js"></script>
-    </body>
+<body>
+    <div>
+        <div my-home></div>
+    </div>
+
+    <script src="jquery-min-3.3.1.js"></script>
+    <script src="angular-min-1.6.js"></script>
+
+    <!-- ///// Main App Containers ///// -->
+    <script src="app.js"></script>
+    <script src="home.js"></script>
+
+    <!-- ///// Modules ///// -->
+    <script src="landingModule/landingModule.js"></script>
+    <script src="weatherModule/weatherModule.js"></script>
+</body>
+
 </html>

@@ -1,10 +1,10 @@
-var myWeather = angular.module('myWeather', []);
+var myLanding = angular.module('myLanding', []);
 
-myWeather.directive('myWeather', function () {
+myLanding.directive('myLanding', function () {
    return {
        link: function(scope, element, attrs) {
            scope.getContentURL = function() {
-               return 'weatherModule/weatherModule.html'
+               return 'landingModule/landingModule.html'
            }
        },
       restrict: 'A',
@@ -12,10 +12,10 @@ myWeather.directive('myWeather', function () {
    };
 });
 
-myWeather.controller('myWeatherCtrl', function($scope) {
+myLanding.controller('myLandingCtrl', function($scope) {
     $scope.testFunction = testFunction;
 
     function testFunction() {
-        console.log('Weather')
+        console.log('landing');
     }
 });

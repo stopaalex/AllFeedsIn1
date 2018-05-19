@@ -1,0 +1,26 @@
+<div ng-controller="myHomeCtrl as myCtrl">
+    <nav>
+        <div class="home-button" ng-click="selectedApp = 'landing'">
+            <span>A</span>
+            <span>F</span>
+            <span>i</span>
+            <span>1</span>
+        </div>
+        <div class="home-menu-container">
+            <div class="profile-img"></div>
+            <div class="menu-btn">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </nav>
+    <div class="home-content-container">
+        <div ng-if="selectedApp === 'landing'" my-landing></div>
+        <div ng-if="selectedApp === 'network'" my-network></div>
+        <div ng-if="selectedApp === 'watch'" my-watch></div>
+        <div ng-if="selectedApp === 'todos'" my-todos></div>
+        <div ng-if="selectedApp === 'stocks'" my-stocks></div>
+        <div ng-if="selectedApp === 'weather'" my-weather></div>
+    </div>
+</div>

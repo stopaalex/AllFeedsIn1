@@ -1,0 +1,68 @@
+nav {
+    position:  absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 42px;
+    display:  flex;
+    align-items:  center;
+    background: #4FDE70;
+}
+
+.home-button {
+    position:  absolute;
+    left: 10px;
+    height: 30px;
+    width: 50px;
+    background: #FFFFFF;
+    display:  flex;
+    justify-content:  center;
+    align-items:  center;
+    font-size:  1.25em;
+    font-weight: 600;
+    color: #3abb57;
+    cursor: pointer;
+}
+
+.home-content-container {
+    position:  absolute;
+    top: 43px;
+    right: 0;
+    bottom:  0;
+    left: 0;
+}
+
+.profile-img {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #e7e7e7;
+    border-radius: 100%;
+    margin-right: 10px;
+}
+
+.menu-btn {
+    width: 25px;
+    height: 25px;
+    display:  flex;
+    flex-direction:  column;
+    justify-content: space-around;
+    align-items: center;
+    cursor:  pointer;
+}
+
+.menu-btn >div {
+    width: 5px;
+    height: 5px;
+    background:  #FFFFFF;
+    border-radius: 100%;
+}
+
+.home-menu-container {
+    position: absolute;
+    right: 10px;
+    width: 70px;
+    height: 30px;
+    display:  flex;
+    justify-content:  center;
+    align-items: center;
+}
