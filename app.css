@@ -30,6 +30,14 @@ button.secondary:focus {
     background: #e7e7e7;
 }
 
+button.tertiary {
+    background: transparent;
+}
+button.tertiary:hover,
+button.tertiary:focus {
+    background: #f2f2f2;
+}
+
 /* INPUT CONTAINER STYLING */
 .input-container {
     display: flex;
@@ -83,6 +91,19 @@ button.secondary:focus {
 
   .btns button {
     font-size: 0.9em;
+}
+
+.go-back {
+    font-size: 0.75em;
+    display:  flex;
+    justify-content: center;
+    align-items:  center;
+    position:  absolute;
+    left: 0;
+}
+
+.go-back i {
+    margin: 0 5px 0 0;
 }
 
 

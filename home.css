@@ -66,10 +66,47 @@ nav {
 }
 
 .menu-btn >div {
+    /* position: absolute; */
     width: 5px;
     height: 5px;
     background:  #FFFFFF;
     border-radius: 100%;
+    transition: 250ms
+}
+
+.menu-btn.menu-open >div:nth-of-type(2) {
+    opacity: 0;
+}
+
+.menu-btn.menu-open >div:nth-of-type(1) {
+    width: 25px;
+    border-radius: 0;
+    height: 3px;
+    transform: rotate(45deg);
+    position: absolute;
+}
+
+.menu-btn.menu-open >div:nth-of-type(3) {
+    width: 25px;
+    border-radius: 0;
+    height: 3px;
+    transform: rotate(-45deg);
+    position: absolute
+}
+
+.menu-slider {
+    position:  absolute;
+    top: 42px;
+    right: -300px;
+    bottom: 0;
+    width: 300px;
+    background:  #2ED152;
+    transition: 500ms;
+}
+
+.options-container {
+    display:  flex;
+    justify-content:  center;
 }
 
 .home-menu-container {

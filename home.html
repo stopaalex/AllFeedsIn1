@@ -1,6 +1,6 @@
 <div ng-controller="myHomeCtrl as myCtrl">
     <nav>
-        <div class="home-button" ng-click="selectedApp = 'landing'">
+        <div class="home-button" onclick="location.reload()">
             <span>A</span>
             <span>F</span>
             <span>i</span>
@@ -10,7 +10,7 @@
             <div class="profile-img">
                 <img id="loggedInUserImg">
             </div>
-            <div class="menu-btn">
+            <div class="menu-btn" ng-click="toggleMenu()" ng-class="{'menu-open': menuOpen}">
                 <div></div>
                 <div></div>
                 <div></div>
@@ -42,16 +42,22 @@
                     <label for="saveCreds">Save Password</label>
                 </div>
                 <div class="TEST TEST">
-                    {{activeUser}}
                 </div>
             </div>
         </div>
         <!-- Modules -->
         <div ng-if="selectedApp === 'landing' && loggedIn" my-landing></div>
-        <div ng-if="selectedApp === 'network'" my-network></div>
-        <div ng-if="selectedApp === 'watch'" my-watch></div>
+        <div ng-if="selectedApp === 'networking'" my-network></div>
+        <div ng-if="selectedApp === 'clock'" my-watch></div>
         <div ng-if="selectedApp === 'todos'" my-todos></div>
         <div ng-if="selectedApp === 'stocks'" my-stocks></div>
         <div ng-if="selectedApp === 'weather'" my-weather></div>
+    </div>
+    <div class="menu-slider" id="menuSlider">
+        <div class="options-container">
+            <div class="option">
+                <button ng-click="signOut()">Sign Out</button>
+            </div>
+        </div>
     </div>
 </div>

@@ -21,6 +21,8 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $scope.logInFromInput = logInFromInput;
     $scope.logInWithCredentials = logInWithCredentials;
     $scope.checkforSavedCreds = checkforSavedCreds;
+    $scope.toggleMenu = toggleMenu;
+    $scope.signOut = signOut;
     $scope.initialize = initialize;
 
     // VARIABLES
@@ -32,6 +34,7 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $scope.loggedIn = false;
     $scope.saveCredsCheck = document.querySelector('#saveCreds');
     $scope.saveChecked = false;
+    $scope.menuOpen = false;
 
     function initializeFirebase() {
         var config = {
@@ -100,6 +103,25 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
         if (savedCredentials) {
             logInWithCredentials(savedCredentials);
         }
+    }
+
+    function toggleMenu() {
+        $scope.menuSlider = document.querySelector('#menuSlider');
+        if (!$scope.menuOpen) {
+            $scope.menuOpen = !$scope.menuOpen
+            $scope.menuSlider.style.right = '0'
+        } else {
+            $scope.menuOpen = !$scope.menuOpen
+            $scope.menuSlider.style.right = '-301px'
+        }
+    }
+
+    function signOut() {
+        $scope.activeUser = {};
+        $scope.loggedIn = false;
+        $scope.userProfPic.src = '';
+        toggleMenu();
+        window.localStorage.removeItem('AFiOneSavedUser');
     }
 
     function initialize() {

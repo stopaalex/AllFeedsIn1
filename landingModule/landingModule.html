@@ -1,3 +1,20 @@
-<div class="weather-container" ng-controller="myLandingCtrl as myCtrl">
-    <button ng-click="testFunction()">click Landing</button>
+<div class="landing-container" ng-controller="myLandingCtrl as myCtrl">
+    <div class="welcome-text">Welcome to your apps page {{activeUser.first_name}}</div>
+    <div class="welcome-text-scroller">
+        Take a look at <span> {{currentModule}}</span>
+    </div>
+    <div class="modules-container">
+        <div class="module" ng-click="selectModule('Profile')">
+            <div class="icon"><i class="fa fa-user"></i></div>
+            <div class="text">
+                Profile
+            </div>
+        </div>
+        <div ng-repeat="module in modules" class="module" ng-click="selectModule(module.name)"> 
+            <div class="icon"><i class="{{module.fa}}"></i></div>
+            <div class="text">
+                {{module.name}}
+            </div>
+        </div>
+    </div>
 </div>
