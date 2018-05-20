@@ -23,6 +23,7 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $scope.checkforSavedCreds = checkforSavedCreds;
     $scope.toggleMenu = toggleMenu;
     $scope.signOut = signOut;
+    $scope.openProfile = openProfile;
     $scope.initialize = initialize;
 
     // VARIABLES
@@ -127,6 +128,11 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
         $scope.userProfPic.src = '';
         toggleMenu();
         window.localStorage.removeItem('AFiOneSavedUser');
+    }
+
+    function openProfile() {
+        $rootScope.selectedProfile = $rootScope.activeUser;
+        $rootScope.selectedApp = 'profile';
     }
 
     function initialize() {

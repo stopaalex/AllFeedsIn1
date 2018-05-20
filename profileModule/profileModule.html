@@ -1,4 +1,37 @@
 <div class="profile-container" ng-controller="myProfileCtrl as myCtrl">
-        <button ng-click="goBack()" class="tertiary go-back"><i class="fa fa-chevron-left"></i> Apps</button>
-        <div></div>
+        <button ng-click="goBack()" class="tertiary go-back">
+                <i class="fa fa-chevron-left"></i> Apps</button>
+        <div class="profile-content-container">
+                <div class="profile-header">
+                        <div class="img">
+                                <img src="{{selectedProfile.imgUrl}}">
+                        </div>
+                        <div class="header-info">
+                                <div class="name">
+                                        {{selectedProfile.first_name}} {{selectedProfile.last_name}}
+                                </div>
+                                <div class="location">
+                                        <i class="fa fa-map-marker"></i>
+                                        {{selectedProfile.location.city}}, {{selectedProfile.location.state}}
+                                </div>
+                                <div class="contact">
+                                        <i class="fa fa-envelope"></i>
+                                        {{selectedProfile.email}}
+                                </div>
+                                <div class="edit-profile" ng-if="isActiveUserProfile">
+                                        <button class="tirtiary">Edit Profile</button>
+                                </div>
+                        </div>
+                </div>
+                <div class="profile-about profile-content">
+                        <div class="profile-content-header">About</div>
+                        <div class="profile-content-body">{{selectedProfile.about}}</div>
+                </div>
+                <div class="profile-Interest profile-content">
+                        <div class="profile-content-header">Interests</div>
+                        <div class="profile-content-body">
+                                <div ng-repeat="interest in selectedProfile.interests" class="profile-interest">{{interest}}</div>
+                        </div>
+                </div>
+        </div>
 </div>

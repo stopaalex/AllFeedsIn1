@@ -1,0 +1,99 @@
+.profile-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.profile-content-container {
+    position: absolute;
+    top: 34px;
+    right: 0;
+    bottom: 0px;
+    left: 0;
+}
+
+.profile-header {
+    display:  flex;
+}
+
+.profile-header .img {
+    width: 175px;
+    height: 280px;
+    border: 10px solid #f2f2f2;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+    border-radius: 10px;
+    display:  flex;
+    justify-content:  center;
+    align-items:  center;
+    overflow:  hidden;
+    position:  absolute;
+    left: 30px;
+}
+
+.profile-header .img img {
+    height: 100%;
+}
+
+.profile-header {
+    display:  flex;
+    margin: 0 100px;
+    min-height: 300px;
+    position:  relative;
+}
+
+.header-info {
+    display:  flex;
+    flex-direction:  column;
+    justify-content: center;
+    margin: 150px 0 0 0;
+    padding: 0 0 0 250px;
+    width: 100%;
+    background: #f2f2f2;
+}
+
+.header-info >div {
+    padding: 5px 0;
+}
+
+.header-info .name {
+    font-size: 2em;
+}
+
+.edit-profile {
+    position:  absolute;
+    right: 0;
+    bottom:  0;
+}
+
+.edit-profile button {
+    background: transparent;
+}
+
+.edit-profile button:hover {
+    background: #e7e7e7;
+}
+
+.profile-content {
+    margin: 30px 100px;
+}
+
+.profile-content-header {
+    font-size: 1.2em;
+    color:  #666;
+    border-bottom:  1px solid #e7e7e7;
+    padding: 5px;
+}
+
+.profile-content-body {
+    padding: 10px;
+}
+
+.profile-interest {
+    display:  inline-block;
+    background: #e7e7e7;
+    padding: 4px 7px;
+    margin: 5px;
+    color: #076b7d
+}

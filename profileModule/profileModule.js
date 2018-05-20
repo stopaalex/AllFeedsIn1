@@ -16,22 +16,36 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
 
     $scope.initialize = initialize;
     $scope.goBack = goBack;
+    $scope.updateInterests = updateInterests;
 
-    $scope.profileInformaiton;
+    $scope.profileInformation;
     $scope.isActiveUserProfile = false;
 
 
     function goBack() {
+        $rootScope.selectedProfile = {};
         $rootScope.selectedApp = 'landing';
     }
 
+    function updateInterests() {
+        var interests;
+        if (typeof $scope.profileInformation.interests === 'string') {
+            interests = $scope.profileInformation.interests.split(', ');
+        } else {
+            interests = $scope.profileInformation.interests;
+            console.log('dont split');
+        }
+        $scope.profileInformation.interests = interests;
+    }
+    
     function initialize() {
         $scope.profileInformation = $rootScope.selectedProfile;
         if ($scope.profileInformation === $rootScope.activeUser) {
             $scope.isActiveUserProfile = true;
         }
-        
-        console.log($scope.isActiveUserProfile);
+
+        updateInterests();
+
         console.log('profile');
     }
 
