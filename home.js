@@ -28,6 +28,11 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     // VARIABLES
     ////////////
     $rootScope.selectedApp = 'landing';
+    $rootScope.selectedProfile = {};
+    $rootScope.activeUser;
+    $rootScope.database;
+    $rootScope.storage;
+
     $scope.databse;
     $scope.storage;
     $scope.users = [];

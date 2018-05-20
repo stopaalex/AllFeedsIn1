@@ -43,6 +43,9 @@ myLanding.controller('myLandingCtrl', function ($scope, $rootScope) {
     $scope.currentModule = 'Networking';
 
     function selectModule(module) {
+        if (module === 'Profile') {
+            $rootScope.selectedProfile = $rootScope.activeUser;
+        }
         var selectModule = module.toLowerCase();
         clearInterval($scope.loopText);
         $rootScope.selectedApp = selectModule;

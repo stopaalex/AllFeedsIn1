@@ -1,6 +1,10 @@
 var myApplication = angular.module("myApplication", [
     'myHome',
     'myLanding',
+    'myProfile',
     'myNetworking',
-    'myWeather'
+    'myStocks',
+    'myWeather',
+    'myClock',
+    'myTodos'
 ]);

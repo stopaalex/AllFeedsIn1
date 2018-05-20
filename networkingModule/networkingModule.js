@@ -33,7 +33,6 @@ myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
                 $scope.users.push(childSnapshot.val());
             });
         }).then(function() {
-            console.log($scope.users);
         });
     }
 

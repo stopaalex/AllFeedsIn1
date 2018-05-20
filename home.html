@@ -47,11 +47,12 @@
         </div>
         <!-- Modules -->
         <div ng-if="selectedApp === 'landing' && loggedIn" my-landing></div>
+        <div ng-if="selectedApp === 'profile'" my-profile></div>
         <div ng-if="selectedApp === 'networking'" my-networking></div>
-        <div ng-if="selectedApp === 'clock'" my-watch></div>
-        <div ng-if="selectedApp === 'todos'" my-todos></div>
         <div ng-if="selectedApp === 'stocks'" my-stocks></div>
         <div ng-if="selectedApp === 'weather'" my-weather></div>
+        <div ng-if="selectedApp === 'clock'" my-clock></div>
+        <div ng-if="selectedApp === 'todos'" my-todos></div>
     </div>
     <div class="menu-slider" id="menuSlider">
         <div class="options-container">
