@@ -4,6 +4,7 @@
     right: 0;
     bottom: 0;
     left: 0;
+    overflow: auto;
 }
 
 .profile-content-container {
@@ -90,10 +91,11 @@
     padding: 10px;
 }
 
-.profile-interest {
-    display:  inline-block;
-    background: #e7e7e7;
-    padding: 4px 7px;
-    margin: 5px;
-    color: #076b7d
+.profile-subcontent {
+    margin: 0 10px;
+}
+
+.profile-content-subheader {
+    border-bottom:  1px solid #e7e7e7;
+    color: #666666;
 }

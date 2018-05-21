@@ -17,6 +17,7 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
     $scope.initialize = initialize;
     $scope.goBack = goBack;
     $scope.updateInterests = updateInterests;
+    $scope.updateSkills = updateSkills;
 
     $scope.profileInformation;
     $scope.isActiveUserProfile = false;
@@ -33,9 +34,18 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
             interests = $scope.profileInformation.interests.split(', ');
         } else {
             interests = $scope.profileInformation.interests;
-            console.log('dont split');
         }
         $scope.profileInformation.interests = interests;
+    }
+
+    function updateSkills() {
+        var skills;
+        if (typeof $scope.profileInformation.work.skills === 'string') {
+            skills = $scope.profileInformation.work.skills.split(', ');
+        } else {
+            skills = $scope.profileInformation.work.skills;
+        }
+        $scope.profileInformation.work.skills = skills;
     }
     
     function initialize() {
@@ -45,6 +55,7 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
         }
 
         updateInterests();
+        updateSkills();
 
         console.log('profile');
     }

@@ -35,7 +35,7 @@
                 </div>
                 <div class="btns">
                     <button class="secondary" ng-click="logInFromInput()">Log In</button>
-                    <button class="primary">Create Profile</button>
+                    <button class="primary" ng-click="openCreateProfile()">Create Profile</button>
                 </div>
                 <div class="save-creds">
                     <input change="toggleCheckmark()" id="saveCreds" type="checkbox">
@@ -45,20 +45,124 @@
                 </div>
             </div>
         </div>
+        <div ng-show="animateLoader" ng-class="{'loadingAnimations': animateLoader}" class="loading-screen" id="loadingScreen">
+            <div class="loading-screen-content">
+                <div class="text">
+                    Logging You In ...
+                </div>
+                <div class="animation">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+        </div>
         <!-- Modules -->
         <div ng-if="selectedApp === 'landing' && loggedIn" my-landing></div>
-        <div ng-if="selectedApp === 'profile'" my-profile></div>
-        <div ng-if="selectedApp === 'networking'" my-networking></div>
-        <div ng-if="selectedApp === 'stocks'" my-stocks></div>
-        <div ng-if="selectedApp === 'weather'" my-weather></div>
-        <div ng-if="selectedApp === 'clock'" my-clock></div>
-        <div ng-if="selectedApp === 'todos'" my-todos></div>
+        <div ng-if="selectedApp === 'profile' && loggedIn" my-profile></div>
+        <div ng-if="selectedApp === 'networking' && loggedIn" my-networking></div>
+        <div ng-if="selectedApp === 'stocks' && loggedIn" my-stocks></div>
+        <div ng-if="selectedApp === 'weather' && loggedIn" my-weather></div>
+        <div ng-if="selectedApp === 'clock' && loggedIn" my-clock></div>
+        <div ng-if="selectedApp === 'todos' && loggedIn" my-todos></div>
     </div>
     <div class="menu-slider" id="menuSlider">
         <div class="options-container">
             <div class="option">
                 <button ng-click="signOut()">Sign Out</button>
             </div>
+        </div>
+    </div>
+    <div ng-class="{'create-modal-shown': createProfileModalOpen}" class="create-profile-modal">
+        <div class="create-profile-content">
+            <div class="create-header">CreateYour Profile</div>
+            <div class="create-subheader">Personal Information</div>
+            <div class="input-container">
+                <input type="text" required id="createFirstName">
+                <span class="one"></span>
+                <label class="label">*First Name</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createLastName">
+                <span class="one"></span>
+                <label class="label">*Last Name</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createAbout">
+                <span class="one"></span>
+                <label class="label">About You</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createInterests">
+                <span class="one"></span>
+                <label class="label">Interests (separate by comma and space)</label>
+            </div>
+            <div class="create-subheader">Where You're From</div>
+            <div class="input-container">
+                <input type="text" required id="createCity">
+                <span class="one"></span>
+                <label class="label">City</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createState">
+                <span class="one"></span>
+                <label class="label">State</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createPhone">
+                <span class="one"></span>
+                <label class="label">Phone</label>
+            </div>
+            <div class="create-subheader">Work</div>
+            <div class="input-container">
+                <input type="text" required id="createWorkCompany">
+                <span class="one"></span>
+                <label class="label">Company</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createWorkTitle">
+                <span class="one"></span>
+                <label class="label">Title</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createWorkFocus">
+                <span class="one"></span>
+                <label class="label">Work Focus</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createWorkSkills">
+                <span class="one"></span>
+                <label class="label">skills</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createEmail">
+                <span class="one"></span>
+                <label class="label">*Email</label>
+            </div>
+            <div class="input-container">
+                <input type="password" required id="createPassword">
+                <span class="one"></span>
+                <label class="label">*Password</label>
+            </div>
+            <div class="input-container">
+                <input type="text" required id="createPasswordConfirmation">
+                <span class="one"></span>
+                <label class="label">*Confirm Password</label>
+            </div>
+            <div class="picture-select">
+                <input type="file" id="pictureUpload">
+                <label for="pictureUpload">Choose a Photo</label>
+            </div>
+            <div class="submit">
+                <button class="submit-btn primary" ng-click="submitNewProfile()">Submit</button>
+            </div>
+            <button class="close-modal tertiary" ng-click="closeCreateProfileModal()">
+                <i class="fa fa-times"></i>
+            </button>
+            <div class="note">* = required field</div>
+            <div class="alert"></div>
         </div>
     </div>
 </div>

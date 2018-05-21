@@ -30,7 +30,16 @@
                 <div class="profile-Interest profile-content">
                         <div class="profile-content-header">Interests</div>
                         <div class="profile-content-body">
-                                <div ng-repeat="interest in selectedProfile.interests" class="profile-interest">{{interest}}</div>
+                                <div ng-repeat="interest in selectedProfile.interests" class="profile-interest tag">{{interest}}</div>
+                        </div>
+                </div>
+                <div class="profile-work profile-content">
+                        <div class="profile-content-header">Work</div>
+                        <div class="profile-content-body">
+                                <div>{{selectedProfile.work.title}} at {{selectedProfile.work.company}} focusing on {{selectedProfile.work.focus}}</div>
+                        </div>
+                        <div class="profile-content-body">
+                                <div ng-repeat="skill in selectedProfile.work.skills" class="profile-skill tag">{{skill}}</div>
                         </div>
                 </div>
         </div>

@@ -4,6 +4,7 @@ nav {
     top: 0;
     right: 0;
     left: 0;
+    z-index: 1;
     height: 42px;
     display:  flex;
     align-items:  center;
@@ -31,6 +32,7 @@ nav {
     right: 0;
     bottom:  0;
     left: 0;
+    z-index: 1;
 }
 
 .profile-img {
@@ -100,6 +102,7 @@ nav {
     top: 42px;
     right: -300px;
     bottom: 0;
+    z-index: 1;
     width: 300px;
     background:  #2ED152;
     transition: 500ms;
@@ -177,4 +180,104 @@ nav {
 }
 #saveCreds.checked::after {
     content: '\2713';
+}
+
+.create-profile-modal {
+    position:  absolute;
+    top: 0;
+    right: 0;
+    bottom:  0;
+    left: 0;
+    background: rgba(0,0,0,0.25);
+    display:  flex;
+    justify-content: center;
+    align-items:  center;
+    z-index: 0;
+    opacity: 0;
+}
+
+.create-modal-shown {
+    opacity: 1;
+    z-index: 1;
+}
+
+.create-profile-content {
+    position: relative;
+    background:  #FFFFFF;
+    z-index:  2;
+    width: 75%;
+    /* height: 75%; */
+    max-height: 98%;
+    padding: 50px;
+    overflow: auto;
+}
+
+.create-profile-content .input-container .label {
+    font-size: 0.8em;
+}
+
+.submit {
+    display:  flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.submit .submit-btn {
+    font-size:  1.1em;
+    padding: 7px 50px;
+}
+
+.close-modal {
+    position:  absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.create-header {
+    position:  absolute;
+    top: 12px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.25em;
+    font-weight:  600;
+    color: #666;
+}
+
+.create-subheader {
+    padding-top:  10px;
+    margin-left: -10px;
+}
+
+.note {
+    font-size:  0.8em;
+    color:  #666;
+}
+
+.picture-select {
+    position:  relative;
+    padding-left: 49px;
+    padding-top: 10px;
+    outline: none;
+}
+
+.picture-select input {
+    outline: none;
+}
+
+.picture-select label {
+    position:  absolute;
+    left: 0;
+    top: 7px;
+    background: #FFFFFF;
+    border: 1px solid #e7e7e7;
+    border-radius:  10px;
+    padding: 5px 17px;
+    cursor:  pointer;
+    font-size: 0.8em;
+    color: #999
+}
+
+.picture-select label:hover {
+    background: #f2f2f2
 }
