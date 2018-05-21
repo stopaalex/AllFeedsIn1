@@ -281,3 +281,40 @@ nav {
 .picture-select label:hover {
     background: #f2f2f2
 }
+
+
+/* CUSTON INPUT STYLING */
+.name-box,
+.contact-box,
+.city-box,
+.password-box {
+    display:  flex;
+}
+
+.name-box >div,
+.contact-box >div,
+.city-box >div,
+.password-box >div {
+    flex: 1;
+}
+
+.name-box >div:first-of-type,
+.contact-box >div:first-of-type,
+.city-box >div:first-of-type,
+.password-box >div:first-of-type {
+    padding: 0 50px 0 0
+}
+
+.name-box >div:first-of-type input,
+.contact-box >div:first-of-type input,
+.city-box >div:first-of-type input,
+.password-box >div:first-of-type input {
+    width: calc(100% - 50px)
+}
+
+.name-box >div:first-of-type input:focus ~ .one,
+.contact-box >div:first-of-type input:focus ~ .one,
+.city-box >div:first-of-type input:focus ~ .one,
+.password-box >div:first-of-type input:focus ~ .one {
+    width: calc(100% - 50px)
+}
