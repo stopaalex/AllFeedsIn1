@@ -19,7 +19,6 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $scope.initializeFirebase = initializeFirebase;
     $scope.getUsers = getUsers;
     $scope.logInFromInput = logInFromInput;
-    $scope.animateLoader = animateLoader;
     $scope.logInWithCredentials = logInWithCredentials;
     $scope.checkforSavedCreds = checkforSavedCreds;
     $scope.toggleMenu = toggleMenu;
@@ -41,7 +40,6 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $scope.databse;
     $scope.storage;
     $scope.users = [];
-    $scope.animateLoader = false;
     $scope.loggedIn = false;
     $scope.saveCredsCheck = document.querySelector('#saveCreds');
     $scope.saveChecked = false;
@@ -86,25 +84,16 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
             if (user.email === $scope.inputEmail.value && user.pass === $scope.inputPassword.value) {
                 $rootScope.activeUser = user;
                 if ($scope.saveChecked) {
-                    // delete activeUserLocal.pass;
                     window.localStorage.setItem('AFiOneSavedUser', JSON.stringify($rootScope.activeUser));
                 }
-                // animateLoader();
-                $scope.animateLoader = true;
-                setTimeout(function() {
-                    $scope.animateLoader = false;
-                    $scope.loggedIn = true;
-                    $rootScope.selectedApp = 'landing';
-                    $scope.userProfPic = document.querySelector('#loggedInUserImg');
-                    $scope.userProfPic.src = $rootScope.activeUser.imgUrl;
-                    $scope.$apply();
-                }, 3000);
+                $scope.animateLoader = false;
+                $scope.loggedIn = true;
+                $rootScope.selectedApp = 'landing';
+                $scope.userProfPic = document.querySelector('#loggedInUserImg');
+                $scope.userProfPic.src = $rootScope.activeUser.imgUrl;
+                // $scope.$apply();
             }
         });
-    }
-
-    function animateLoader() {
-        $scope.animateLoader = true;
     }
 
     function logInWithCredentials(savedCredentials) {

@@ -17,10 +17,13 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
     $scope.initialize = initialize;
     $scope.goBack = goBack;
     $scope.updateInterests = updateInterests;
+    $scope.toggleEditProfile = toggleEditProfile;
+    $scope.saveNewInfo = saveNewInfo;
     $scope.updateSkills = updateSkills;
 
     $scope.profileInformation;
     $scope.isActiveUserProfile = false;
+    $scope.editingProfile = false;
 
 
     function goBack() {
@@ -47,7 +50,15 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
         }
         $scope.profileInformation.work.skills = skills;
     }
-    
+
+    function toggleEditProfile() {
+        $scope.editingProfile = !$scope.editingProfile;
+    }
+
+    function saveNewInfo() {
+        $scope.editingProfile = false;
+    }
+
     function initialize() {
         $scope.profileInformation = $rootScope.selectedProfile;
         if ($scope.profileInformation === $rootScope.activeUser) {

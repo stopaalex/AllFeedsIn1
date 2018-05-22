@@ -8,35 +8,63 @@
                         </div>
                         <div class="header-info">
                                 <div class="name">
-                                        {{selectedProfile.first_name}} {{selectedProfile.last_name}}
+                                        <span ng-if="!editingProfile">
+                                                {{selectedProfile.first_name}} {{selectedProfile.last_name}}
+                                        </span>
+                                        <span ng-if="editingProfile">
+                                                <input type="text" value="{{selectedProfile.first_name}}">
+                                                <input type="text" value="{{selectedProfile.last_name}}">
+                                        </span>
                                 </div>
                                 <div class="location">
                                         <i class="fa fa-map-marker"></i>
-                                        {{selectedProfile.location.city}}, {{selectedProfile.location.state}}
+                                        <span ng-if="!editingProfile">
+                                                {{selectedProfile.location.city}}, {{selectedProfile.location.state}}
+                                        </span>
+                                        <span ng-if="editingProfile">
+                                                <input type="text" value="{{selectedProfile.location.city}}">
+                                                <input type="text" value="{{selectedProfile.location.state}}">
+                                        </span>
                                 </div>
                                 <div class="contact">
                                         <i class="fa fa-envelope"></i>
                                         {{selectedProfile.email}}
                                 </div>
                                 <div class="edit-profile" ng-if="isActiveUserProfile">
-                                        <button class="tirtiary">Edit Profile</button>
+                                        <button class="primary" ng-if="editingProfile" ng-click="saveNewInfo();">
+                                                Save Information
+                                        </button>
+                                        <button class="tirtiary" ng-click="toggleEditProfile();">
+                                                <span ng-if="!editingProfile">Edit Profile</span>
+                                                <span ng-if="editingProfile">Close Edit</span>
+                                        </button>
                                 </div>
                         </div>
                 </div>
                 <div class="profile-about profile-content">
                         <div class="profile-content-header">About</div>
-                        <div class="profile-content-body">{{selectedProfile.about}}</div>
+                        <div class="profile-content-body" ng-if="!editingProfile">{{selectedProfile.about}}</div>
+                        <div class="profile-content-body" ng-if="editingProfile">
+                                <textarea value="{{selectedProfile.about}}">{{selectedProfile.about}}</textarea>
+                        </div>
                 </div>
                 <div class="profile-Interest profile-content">
                         <div class="profile-content-header">Interests</div>
                         <div class="profile-content-body">
                                 <div ng-repeat="interest in selectedProfile.interests" class="profile-interest tag">{{interest}}</div>
                         </div>
+
+
                 </div>
                 <div class="profile-work profile-content">
                         <div class="profile-content-header">Work</div>
-                        <div class="profile-content-body">
+                        <div class="profile-content-body" ng-if="!editingProfile">
                                 <div>{{selectedProfile.work.title}} at {{selectedProfile.work.company}} focusing on {{selectedProfile.work.focus}}</div>
+                        </div>
+                        <div class="profile-content-body" ng-if="editingProfile">
+                                <textarea value="{{selectedProfile.work.title}}">{{selectedProfile.work.title}}</textarea>
+                                <textarea value="{{selectedProfile.work.company}">{{selectedProfile.work.company}}</textarea>
+                                <textarea value="{{selectedProfile.work.focus}}">{{selectedProfile.work.focus}}</textarea>
                         </div>
                         <div class="profile-content-body">
                                 <div ng-repeat="skill in selectedProfile.work.skills" class="profile-skill tag">{{skill}}</div>

@@ -1,5 +1,5 @@
 <div ng-controller="myHomeCtrl as myCtrl">
-    <nav>
+    <nav ng-class="{'larger-nav': !loggedIn}">
         <div class="home-button" onclick="location.reload()">
             <span>A</span>
             <span>F</span>
@@ -42,20 +42,6 @@
                     <label for="saveCreds">Save Password</label>
                 </div>
                 <div class="TEST TEST">
-                </div>
-            </div>
-        </div>
-        <div ng-show="animateLoader" ng-class="{'loadingAnimations': animateLoader}" class="loading-screen" id="loadingScreen">
-            <div class="loading-screen-content">
-                <div class="text">
-                    Logging You In ...
-                </div>
-                <div class="animation">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
                 </div>
             </div>
         </div>
