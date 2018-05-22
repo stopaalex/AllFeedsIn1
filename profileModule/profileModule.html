@@ -50,8 +50,11 @@
                 </div>
                 <div class="profile-Interest profile-content">
                         <div class="profile-content-header">Interests</div>
-                        <div class="profile-content-body">
+                        <div class="profile-content-body" ng-if="!editingProfile">
                                 <div ng-repeat="interest in selectedProfile.interests" class="profile-interest tag">{{interest}}</div>
+                        </div>
+                        <div ng-if="editingProfile">
+                                <input type="text" value="stringifyInterests()">
                         </div>
 
 
