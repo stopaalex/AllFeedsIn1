@@ -30,7 +30,7 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
 
     function goBack() {
         $rootScope.selectedProfile = {};
-        $rootScope.selectedApp = 'landing';
+        $rootScope.selectedApp = document.querySelector('#goBack').dataset.module;
     }
 
     function updateInterests() {
@@ -135,6 +135,22 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
     }
 
     function initialize() {
+        debugger
+        // $rootScope.selectedProfile = $rootScope.activeUser
+
+        if (!$rootScope.userTrail) {
+            $rootScope.userTrail = 'profile,'
+        } else {
+            $rootScope.userTrail = $rootScope.userTrail + 'profile,'
+        }
+        var userTrailClear = $rootScope.userTrail.split(',');
+        var last = userTrailClear.length - 3;
+        var goBackLocation = document.querySelector('#goBack');
+
+        goBackLocation.dataset.module = userTrailClear[last];
+        goBackLocation.innerHTML = '<i class="fa fa-chevron-left"></i>' + userTrailClear[last];
+
+
         $scope.profileInformation = $rootScope.selectedProfile;
         if ($scope.profileInformation.unique_ID === $rootScope.activeUser.unique_ID) {
             $scope.isActiveUserProfile = true;

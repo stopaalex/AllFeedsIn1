@@ -25,6 +25,7 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $scope.toggleJellyMenu = toggleJellyMenu;
     $scope.signOut = signOut;
     $scope.openProfile = openProfile;
+    $scope.goHome = goHome;
     $scope.openCreateProfile = openCreateProfile;
     $scope.closeCreateProfileModal = closeCreateProfileModal;
     $scope.submitNewProfile = submitNewProfile;
@@ -37,6 +38,7 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $rootScope.activeUser;
     $rootScope.database;
     $rootScope.storage;
+    $rootScope.userTrail;
 
     $scope.databse;
     $scope.storage;
@@ -173,6 +175,10 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
         $rootScope.selectedApp = 'profile';
     }
 
+    function goHome() {
+        $rootScope.selectedApp = 'landing';
+    }
+
     function openCreateProfile() {
         $scope.createProfileModalOpen = true;
     }
@@ -288,6 +294,7 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
         });
 
         window.addEventListener('click', function(e) {
+            // for the Jelly menu
             var targetClear = JSON.stringify(e.target.classList).includes('jelly'),
                 parentClear;
             if (e.target.offsetParent !== null) {
@@ -301,6 +308,9 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
                 if($rootScope.menuOpen2) {
                     toggleJellyMenu();
                 }
+            }
+
+            if (JSON.stringify(e.target.classList).includes('go-back')) {
             }
 
         })

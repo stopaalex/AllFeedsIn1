@@ -13,10 +13,26 @@ myWeather.directive('myWeather', function () {
 });
 
 myWeather.controller('myWeatherCtrl', function($scope, $rootScope) {
+    $scope.initialize = initialize;
     $scope.goBack = goBack;
 
     function goBack() {
-        console.log('Weather');
-        $rootScope.selectedApp = 'landing';
+        $rootScope.selectedApp = document.querySelector('#goBack').dataset.module;
     }
+
+    function initialize() {
+        if (!$rootScope.userTrail) {
+            $rootScope.userTrail = 'weather,'
+        } else {
+            $rootScope.userTrail = $rootScope.userTrail + 'weather,'
+        }
+        var userTrailClear = $rootScope.userTrail.split(',');
+        var last = userTrailClear.length - 3;
+        var goBackLocation = document.querySelector('#goBack');
+
+        goBackLocation.dataset.module = userTrailClear[last];
+        goBackLocation.innerHTML = '<i class="fa fa-chevron-left"></i>' + userTrailClear[last];
+    }
+
+    initialize();
 });

@@ -18,11 +18,21 @@ myClock.controller('myClockCtrl', function ($scope, $rootScope) {
     $scope.goBack = goBack;
 
     function goBack() {
-        $rootScope.selectedApp = 'landing';
+        $rootScope.selectedApp = document.querySelector('#goBack').dataset.module;
     }
 
     function initialize() {
-        console.log('clock');
+        if (!$rootScope.userTrail) {
+            $rootScope.userTrail = 'clock,'
+        } else {
+            $rootScope.userTrail = $rootScope.userTrail + 'clock,'
+        }
+        var userTrailClear = $rootScope.userTrail.split(',');
+        var last = userTrailClear.length - 3;
+        var goBackLocation = document.querySelector('#goBack');
+
+        goBackLocation.dataset.module = userTrailClear[last];
+        goBackLocation.innerHTML = '<i class="fa fa-chevron-left"></i>' + userTrailClear[last];
     }
 
     initialize();

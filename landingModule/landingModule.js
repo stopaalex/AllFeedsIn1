@@ -64,6 +64,11 @@ myLanding.controller('myLandingCtrl', function ($scope, $rootScope) {
     }
 
     function initialize() {
+        if (!$rootScope.userTrail) {
+            $rootScope.userTrail = 'landing,'
+        } else {
+            $rootScope.userTrail = $rootScope.userTrail + 'landing,'
+        }
         loopText();
     }
 

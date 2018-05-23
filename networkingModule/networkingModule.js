@@ -29,7 +29,7 @@ myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
     }
 
     function goBack() {
-        $rootScope.selectedApp = 'landing';
+        $rootScope.selectedApp = document.querySelector('#goBack').dataset.module;
     }
 
     function reloadUsers() {
@@ -47,6 +47,17 @@ myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
     }
 
     function initialize() {
+        if (!$rootScope.userTrail) {
+            $rootScope.userTrail = 'networking,'
+        } else {
+            $rootScope.userTrail = $rootScope.userTrail + 'networking,'
+        }
+        var userTrailClear = $rootScope.userTrail.split(',');
+        var last = userTrailClear.length - 3;
+        var goBackLocation = document.querySelector('#goBack');
+
+        goBackLocation.dataset.module = userTrailClear[last];
+        goBackLocation.innerHTML = '<i class="fa fa-chevron-left"></i>' + userTrailClear[last];
         reloadUsers();
     }
 

@@ -1,5 +1,5 @@
 <div class="networking-container" ng-controller="myNetworkingCtrl as myCtrl">
-        <button ng-click="goBack()" class="tertiary go-back"><i class="fa fa-chevron-left"></i> Apps</button>
+        <button ng-click="goBack(this.data-module)" class="tertiary go-back" id="goBack"></button>
         <div class="network-content-container">
                 <div class="feed-users">
                         <div class="feed">
