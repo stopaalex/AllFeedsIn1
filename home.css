@@ -128,12 +128,14 @@ nav {
 
 .menu-slider {
     position:  absolute;
-    top: 42px;
+    border-top-left-radius: 200px;
+    top: -8px;
+    padding-top: 70px;
     right: -300px;
     bottom: 0;
     z-index: 1;
     width: 300px;
-    background:  #2ED152;
+    background:  #4FDE70;
     transition: 500ms;
 }
 

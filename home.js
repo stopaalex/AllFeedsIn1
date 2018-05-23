@@ -105,7 +105,14 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
                 $scope.$apply();
                 $scope.userProfPic = document.querySelector('#loggedInUserImg');
                 $scope.userProfPic.src = $rootScope.activeUser.imgUrl;
-
+                setTimeout(function() {
+                    var reloadFromEdit = window.localStorage.getItem('reloadedFromEdit');
+                    if (reloadFromEdit) {
+                        $rootScope.selectedProfile = $rootScope.activeUser;
+                        $rootScope.selectedApp = 'profile';
+                        window.localStorage.removeItem('reloadedFromEdit')
+                    }
+                }, 10);
             }
         });
     }

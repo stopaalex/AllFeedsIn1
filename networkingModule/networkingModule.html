@@ -1,3 +1,22 @@
 <div class="networking-container" ng-controller="myNetworkingCtrl as myCtrl">
         <button ng-click="goBack()" class="tertiary go-back"><i class="fa fa-chevron-left"></i> Apps</button>
+        <div class="network-content-container">
+                <div class="feed-users">
+                        <div class="feed">
+                                Feed
+                        </div>
+                        <div class="users">
+                                <div>Users</div>
+                                <div class="network-user" ng-repeat="user in users">
+                                        <div class="img" ng-click="openProfile(user.unique_ID)" id="{{user.unique_ID}}">
+                                                <img src="{{user.imgUrl}}">
+                                        </div>
+                                        <div class="text">
+                                                <div class="name">{{user.first_name}} {{user.last_name}}</div>
+                                                <div class="about">{{user.about}}</div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
 </div>

@@ -14,16 +14,25 @@ myNetworking.directive('myNetworking', function () {
 
 myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
 
+    $scope.reloadUsers = reloadUsers;
     $scope.initialize = initialize;
     $scope.goBack = goBack;
+    $scope.openProfile = openProfile;
+
+    function openProfile(id) {
+        $scope.users.forEach(function(user) {
+            if (user.unique_ID === id) {
+                $rootScope.selectedProfile = user;
+                $rootScope.selectedApp = 'profile';
+            }
+        })
+    }
 
     function goBack() {
         $rootScope.selectedApp = 'landing';
     }
 
-    function initialize() {
-        console.log('netowrking');
-
+    function reloadUsers() {
         $scope.users = [];
         var ref = $rootScope.database.ref("users");
 
@@ -33,7 +42,12 @@ myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
                 $scope.users.push(childSnapshot.val());
             });
         }).then(function() {
+            $scope.$apply();
         });
+    }
+
+    function initialize() {
+        reloadUsers();
     }
 
     initialize();

@@ -31,10 +31,30 @@
     overflow:  hidden;
     position:  absolute;
     left: 30px;
+    background:  #FFFFFF;
+}
+
+.profile-header .img::after {
+    content: '\273D';
+    position: absolute;
+    font-size: 3em;
+    animation: spin .5s infinite;
+    z-index: 0;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+    100% {
+        transform: rotate(360deg)
+    }
 }
 
 .profile-header .img img {
     height: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .profile-header {
@@ -81,10 +101,6 @@
     bottom:  0;
 }
 
-.edit-profile button:hover {
-    background: #e7e7e7;
-}
-
 /****** PROFILE CONTENT ******/
 
 .profile-content {
@@ -123,4 +139,87 @@
 
 .profile-content-body {
     display: flex;
+}
+
+.profile-content div textarea {
+    border: none;
+    background: #f2f2f2;
+    outline: none;
+    position: relative;
+    border-bottom: 2px solid transparent;
+    font-size: 0.8em;
+}
+.profile-content div textarea:focus {
+    border-bottom: 2px solid #2CA0B6
+}
+
+textarea#newInterests,
+textarea#newSkills {
+    width: calc(100% - 20px);
+    margin: 10px;
+    resize: none;
+padding: 5px;
+}
+
+.location span input,
+.name span input {
+    border: none;
+    border-bottom:  2px solid transparent;
+    padding: 2px;
+    outline: none;
+    font-size: 12px;
+}
+
+.location span input:focus,
+.name span input:focus {
+    border-bottom: 2px solid #2CA0B6
+}
+
+.profile-content div textarea {
+    border: none;
+    background: #f2f2f2;
+    outline: none;
+    position: relative;
+    border-bottom: 2px solid transparent
+}
+.profile-content div textarea:focus {
+    border-bottom: 2px solid #2CA0B6
+}
+
+textarea#newInterests,
+textarea#newSkills {
+    width: calc(100% - 20px);
+    margin: 10px;
+    resize: none
+}
+
+.profile-content div i {
+    font-size:  0.6em;
+    padding-left: 10px;
+}
+
+.new-photo {
+    position:  absolute;
+    bottom: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    background: transparent;
+}
+
+.new-photo input {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.new-photo label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 2em;
+    color: #FFFFFF
+}
+
+.new-photo label:hover {
+    cursor: pointer;
 }

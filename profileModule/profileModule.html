@@ -5,6 +5,7 @@
                 <div class="profile-header">
                         <div class="img">
                                 <img src="{{selectedProfile.imgUrl}}">
+                                <button class="new-photo" ng-if="editingProfile"><input type="file" id="newPhoto"><label for="newPhoto"><i class="fa fa-cog"></i></label></button>
                         </div>
                         <div class="header-info">
                                 <div class="name">
@@ -12,8 +13,8 @@
                                                 {{selectedProfile.first_name}} {{selectedProfile.last_name}}
                                         </span>
                                         <span ng-if="editingProfile">
-                                                <input type="text" value="{{selectedProfile.first_name}}">
-                                                <input type="text" value="{{selectedProfile.last_name}}">
+                                                <input id="newFirstName" type="text" value="{{selectedProfile.first_name}}">
+                                                <input id="newLastName" type="text" value="{{selectedProfile.last_name}}">
                                         </span>
                                 </div>
                                 <div class="location">
@@ -22,8 +23,8 @@
                                                 {{selectedProfile.location.city}}, {{selectedProfile.location.state}}
                                         </span>
                                         <span ng-if="editingProfile">
-                                                <input type="text" value="{{selectedProfile.location.city}}">
-                                                <input type="text" value="{{selectedProfile.location.state}}">
+                                                <input id="newCity" type="text" value="{{selectedProfile.location.city}}">
+                                                <input id="newState" type="text" value="{{selectedProfile.location.state}}">
                                         </span>
                                 </div>
                                 <div class="contact">
@@ -45,7 +46,7 @@
                         <div class="profile-content-header">About</div>
                         <div class="profile-content-body" ng-if="!editingProfile">{{selectedProfile.about}}</div>
                         <div class="profile-content-body" ng-if="editingProfile">
-                                <textarea value="{{selectedProfile.about}}">{{selectedProfile.about}}</textarea>
+                                <textarea id="newAbout" value="{{selectedProfile.about}}">{{selectedProfile.about}}</textarea>
                         </div>
                 </div>
                 <div class="profile-Interest profile-content">
@@ -54,7 +55,8 @@
                                 <div ng-repeat="interest in selectedProfile.interests" class="profile-interest tag">{{interest}}</div>
                         </div>
                         <div ng-if="editingProfile">
-                                <input type="text" value="stringifyInterests()">
+                                <i>* Interests will only be accepted comma and space separated (interest, interest)</i>
+                                <textarea id="newInterests" type="text" value=""></textarea>
                         </div>
 
 
@@ -65,12 +67,16 @@
                                 <div>{{selectedProfile.work.title}} at {{selectedProfile.work.company}} focusing on {{selectedProfile.work.focus}}</div>
                         </div>
                         <div class="profile-content-body" ng-if="editingProfile">
-                                <textarea value="{{selectedProfile.work.title}}">{{selectedProfile.work.title}}</textarea>
-                                <textarea value="{{selectedProfile.work.company}">{{selectedProfile.work.company}}</textarea>
-                                <textarea value="{{selectedProfile.work.focus}}">{{selectedProfile.work.focus}}</textarea>
+                                <textarea id="newWorkTitle" value="{{selectedProfile.work.title}}">{{selectedProfile.work.title}}</textarea>
+                                <textarea id="newWorkCompany" value="{{selectedProfile.work.company}">{{selectedProfile.work.company}}</textarea>
+                                <textarea id="newWorkFocus" value="{{selectedProfile.work.focus}}">{{selectedProfile.work.focus}}</textarea>
                         </div>
-                        <div class="profile-content-body">
+                        <div class="profile-content-body" ng-if="!editingProfile">
                                 <div ng-repeat="skill in selectedProfile.work.skills" class="profile-skill tag">{{skill}}</div>
+                        </div>
+                        <div ng-if="editingProfile">
+                                <i>* skills will only be accepted comma and space separated (skill, skill)</i>
+                                <textarea id="newSkills" type="text" value=""></textarea>
                         </div>
                 </div>
         </div>

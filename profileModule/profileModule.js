@@ -19,6 +19,7 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
     $scope.updateInterests = updateInterests;
     $scope.updateSkills = updateSkills;
     $scope.stringifyInterests = stringifyInterests;
+    $scope.stringifySkills = stringifySkills;
     $scope.toggleEditProfile = toggleEditProfile;
     $scope.saveNewInfo = saveNewInfo;
 
@@ -53,27 +54,95 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
     }
 
     function stringifyInterests() {
-        return $scope.profileInformation.interests.replace(/\[|\]|\"/g, '');
+        var returnVal;
+        if (typeof $scope.profileInformation.interests !== 'string') {
+            returnVal = JSON.stringify($scope.profileInformation.interests);
+            returnVal = returnVal.replace(/\[|\]|\"/g, '');
+            returnVal = returnVal.replace(/,/g, ', ');
+            document.querySelector('#newInterests').value = returnVal;
+        } else {
+            returnVal = $scope.profileInformation.interests.replace(/\[|\]|\"/g, '');
+            returnVal = returnVal.replace(/,/g, ', ');
+            document.querySelector('#newInterests').value = returnVal;
+        }
+    }
+
+    function stringifySkills() {
+        var returnVal;
+        if (typeof $scope.profileInformation.work.skills !== 'string') {
+            returnVal = JSON.stringify($scope.profileInformation.work.skills);
+            returnVal = returnVal.replace(/\[|\]|\"/g, '');
+            returnVal = returnVal.replace(/,/g, ', ');
+            document.querySelector('#newSkills').value = returnVal;
+        } else {
+            returnVal = $scope.profileInformation.work.skills.replace(/\[|\]|\"/g, '');
+            returnVal = returnVal.replace(/,/g, ', ');
+            document.querySelector('#newSkills').value = returnVal;
+        }
     }
 
     function toggleEditProfile() {
         $scope.editingProfile = !$scope.editingProfile;
+        if ($scope.editingProfile) {
+            setTimeout(function () {
+                stringifyInterests();
+                stringifySkills();
+            }, 50);
+        }
     }
 
     function saveNewInfo() {
         $scope.editingProfile = false;
+        var profileID = $rootScope.selectedProfile.unique_ID; 
+
+        var newFirstName = document.querySelector('#newFirstName'),
+            newLastName = document.querySelector('#newLastName'),
+            newCity = document.querySelector('#newCity'),
+            newState = document.querySelector('#newState'),
+            newAbout = document.querySelector('#newAbout'),
+            newInterests = document.querySelector('#newInterests'),
+            newWorkTitle = document.querySelector('#newWorkTitle'),
+            newWorkCompany = document.querySelector('#newWorkCompany'),
+            newWorkFocus = document.querySelector('#newWorkFocus'),
+            newSkills = document.querySelector('#newSkills');
+
+        $rootScope.database.ref('users/' + profileID).update({
+            about: newAbout.value || '',
+            // email: email,
+            first_name: newFirstName.value || '',
+            // imgUrl: url || '',
+            interests: newInterests.value || '',
+            last_name: newLastName.value || '',
+            location: {
+                city: newCity.value || '',
+                state: newState.value || ''
+            },
+            // pass: password,
+            // phone: phone || '',
+            // share_contact: true,
+            // unique_ID: uniqueID,
+            work: {
+                company: newWorkCompany.value || '',
+                focus: newWorkFocus.value || '',
+                skills: newSkills.value || '',
+                title: newWorkTitle.value || ''
+            }
+        }).then(function() {
+            $scope.editingProfile = false;
+            window.localStorage.setItem('reloadedFromEdit', true);
+            location.reload();
+        })
     }
 
     function initialize() {
         $scope.profileInformation = $rootScope.selectedProfile;
-        if ($scope.profileInformation === $rootScope.activeUser) {
+        if ($scope.profileInformation.unique_ID === $rootScope.activeUser.unique_ID) {
             $scope.isActiveUserProfile = true;
         }
 
         updateInterests();
         updateSkills();
 
-        console.log('profile');
     }
 
     initialize();
