@@ -135,9 +135,6 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
     }
 
     function initialize() {
-        debugger
-        // $rootScope.selectedProfile = $rootScope.activeUser
-
         if (!$rootScope.userTrail) {
             $rootScope.userTrail = 'profile,'
         } else {
