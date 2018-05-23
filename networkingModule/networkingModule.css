@@ -78,3 +78,15 @@
     width: calc(100% - 10px);
     text-overflow: ellipsis;
 }
+
+.add-connections {
+    position:  absolute;
+    top: 42px;
+    right: 0;
+    background: transparent;
+    color: #666;
+}
+
+.add-connections:hover {
+    color: #000000
+}
