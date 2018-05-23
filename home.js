@@ -22,6 +22,7 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $scope.logInWithCredentials = logInWithCredentials;
     $scope.checkforSavedCreds = checkforSavedCreds;
     $scope.toggleMenu = toggleMenu;
+    $scope.toggleJellyMenu = toggleJellyMenu;
     $scope.signOut = signOut;
     $scope.openProfile = openProfile;
     $scope.openCreateProfile = openCreateProfile;
@@ -44,6 +45,7 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
     $scope.saveCredsCheck = document.querySelector('#saveCreds');
     $scope.saveChecked = false;
     $scope.menuOpen = false;
+    $rootScope.menuOpen2 = false;
     $scope.createProfileModalOpen = false;
 
     function initializeFirebase() {
@@ -105,7 +107,7 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
                 $scope.$apply();
                 $scope.userProfPic = document.querySelector('#loggedInUserImg');
                 $scope.userProfPic.src = $rootScope.activeUser.imgUrl;
-                setTimeout(function() {
+                setTimeout(function () {
                     var reloadFromEdit = window.localStorage.getItem('reloadedFromEdit');
                     if (reloadFromEdit) {
                         $rootScope.selectedProfile = $rootScope.activeUser;
@@ -135,13 +137,34 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
         }
     }
 
+    function toggleJellyMenu() {
+        var prof = document.querySelector('.home-menu-container .open');
+        var more = document.querySelector('.home-menu-container .more');
+        var sOut = document.querySelector('.home-menu-container .sign-out');
+        if (!$rootScope.menuOpen2) {
+            prof.style.right = '80px'
+            prof.style.top = '10px'
+            more.style.right = '65px';
+            more.style.top = '65px';
+            sOut.style.top = '80px';
+            $rootScope.menuOpen2 = true;
+        } else {
+            prof.style.right = '0px'
+            prof.style.top = '-3px'
+            more.style.right = '0px';
+            more.style.top = '-3px';
+            sOut.style.top = '-3px';
+            $rootScope.menuOpen2 = false;
+        }
+    }
+
     function signOut() {
         $scope.activeUser = {};
         $rootScope.selectedProfile = {};
         $rootScope.selectedApp = '';
         $scope.loggedIn = false;
         $scope.userProfPic.src = '';
-        toggleMenu();
+        // toggleMenu();
         window.localStorage.removeItem('AFiOneSavedUser');
     }
 
@@ -262,6 +285,24 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
                 $scope.saveCredsCheck.classList.remove('checked');
                 $scope.saveChecked = false;
             }
+        });
+
+        window.addEventListener('click', function(e) {
+            var targetClear = JSON.stringify(e.target.classList).includes('jelly'),
+                parentClear;
+            if (e.target.offsetParent !== null) {
+                parentClear = JSON.stringify(e.target.offsetParent.classList).includes('jelly');
+            } else {
+                parentClear = false;
+            }
+            if (targetClear || parentClear) {
+                console.log('dont close menu');
+            } else {
+                if($rootScope.menuOpen2) {
+                    toggleJellyMenu();
+                }
+            }
+
         })
     }
 

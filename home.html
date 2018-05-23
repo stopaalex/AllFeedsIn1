@@ -1,44 +1,60 @@
 <div ng-controller="myHomeCtrl as myCtrl">
     <nav ng-class="{'larger-nav': !loggedIn}">
-        <div class="home-button" onclick="location.reload()">
+        <div class="home-button"
+             onclick="location.reload()">
             <span>A</span>
             <span>F</span>
             <span>i</span>
             <span>1</span>
         </div>
         <div class="home-menu-container">
-            <div class="profile-img" ng-click="openProfile()">
+            <div class="open jelly-menu" ng-click="openProfile(); toggleJellyMenu()"><i class="fa fa-user"></i></div>
+            <div class="more jelly-menu"><i class="fa fa-ellipsis-v"></i></div>
+            <div class="sign-out jelly-menu" ng-click="signOut(); toggleJellyMenu()"><i class="fa fa-sign-out-alt"></i></div>
+            <div class="profile-img-jelly jelly-menu" ng-click="toggleJellyMenu();">
+                <img id="loggedInUserImg">
+            </div>
+            <!-- <div class="profile-img" ng-click="openProfile()">
                 <img id="loggedInUserImg">
             </div>
             <div class="menu-btn" ng-click="toggleMenu()" ng-class="{'menu-open': menuOpen}">
                 <div></div>
                 <div></div>
                 <div></div>
-            </div>
+            </div> -->
         </div>
     </nav>
     <div class="home-content-container">
         <!-- Log In Content -->
-        <div ng-show="!loggedIn" class="home-login-container">
+        <div ng-show="!loggedIn"
+             class="home-login-container">
             <div class="home-user-login">
                 <div class="inputs">
                     <div class="input-container">
-                        <input type="text" required id="logInEmail">
+                        <input type="text"
+                               required
+                               id="logInEmail">
                         <span class="one"></span>
                         <label class="label">Email</label>
                     </div>
                     <div class="input-container">
-                        <input type="password" required id="logInPassword">
+                        <input type="password"
+                               required
+                               id="logInPassword">
                         <span class="one"></span>
                         <label class="label">Password</label>
                     </div>
                 </div>
                 <div class="btns">
-                    <button class="secondary" ng-click="logInFromInput()">Log In</button>
-                    <button class="primary" ng-click="openCreateProfile()">Create Profile</button>
+                    <button class="secondary"
+                            ng-click="logInFromInput()">Log In</button>
+                    <button class="primary"
+                            ng-click="openCreateProfile()">Create Profile</button>
                 </div>
                 <div class="save-creds">
-                    <input change="toggleCheckmark()" id="saveCreds" type="checkbox">
+                    <input change="toggleCheckmark()"
+                           id="saveCreds"
+                           type="checkbox">
                     <label for="saveCreds">Save Password</label>
                 </div>
                 <div class="TEST TEST">
@@ -46,113 +62,153 @@
             </div>
         </div>
         <!-- Modules -->
-        <div ng-if="selectedApp === 'landing' && loggedIn" my-landing></div>
-        <div ng-if="selectedApp === 'profile' && loggedIn" my-profile></div>
-        <div ng-if="selectedApp === 'networking' && loggedIn" my-networking></div>
-        <div ng-if="selectedApp === 'stocks' && loggedIn" my-stocks></div>
-        <div ng-if="selectedApp === 'weather' && loggedIn" my-weather></div>
-        <div ng-if="selectedApp === 'clock' && loggedIn" my-clock></div>
-        <div ng-if="selectedApp === 'todos' && loggedIn" my-todos></div>
+        <div ng-if="selectedApp === 'landing' && loggedIn"
+             my-landing></div>
+        <div ng-if="selectedApp === 'profile' && loggedIn"
+             my-profile></div>
+        <div ng-if="selectedApp === 'networking' && loggedIn"
+             my-networking></div>
+        <div ng-if="selectedApp === 'stocks' && loggedIn"
+             my-stocks></div>
+        <div ng-if="selectedApp === 'weather' && loggedIn"
+             my-weather></div>
+        <div ng-if="selectedApp === 'clock' && loggedIn"
+             my-clock></div>
+        <div ng-if="selectedApp === 'todos' && loggedIn"
+             my-todos></div>
     </div>
-    <div class="menu-slider" id="menuSlider">
+    <div class="menu-slider"
+         id="menuSlider">
         <div class="options-container">
             <div class="option">
                 <button ng-click="signOut()">Sign Out</button>
             </div>
         </div>
     </div>
-    <div ng-class="{'create-modal-shown': createProfileModalOpen}" class="create-profile-modal">
+    <div ng-class="{'create-modal-shown': createProfileModalOpen}"
+         class="create-profile-modal">
         <div class="create-profile-content">
             <div class="create-header">CreateYour Profile</div>
             <div class="create-subheader">Personal Information</div>
             <div class="name-box">
                 <div class="input-container">
-                    <input type="text" required id="createFirstName">
+                    <input type="text"
+                           required
+                           id="createFirstName">
                     <span class="one"></span>
                     <label class="label">*First Name</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" required id="createLastName">
+                    <input type="text"
+                           required
+                           id="createLastName">
                     <span class="one"></span>
                     <label class="label">*Last Name</label>
                 </div>
             </div>
             <div class="input-container">
-                <input type="text" required id="createAbout">
+                <input type="text"
+                       required
+                       id="createAbout">
                 <span class="one"></span>
                 <label class="label">About You</label>
             </div>
             <div class="contact-box">
                 <div class="input-container">
-                        <input type="text" required id="createEmail">
-                        <span class="one"></span>
-                        <label class="label">*Email</label>
-                    </div>
+                    <input type="text"
+                           required
+                           id="createEmail">
+                    <span class="one"></span>
+                    <label class="label">*Email</label>
+                </div>
                 <div class="input-container">
-                    <input type="text" required id="createPhone">
+                    <input type="text"
+                           required
+                           id="createPhone">
                     <span class="one"></span>
                     <label class="label">Phone</label>
                 </div>
             </div>
             <div class="input-container">
-                <input type="text" required id="createInterests">
+                <input type="text"
+                       required
+                       id="createInterests">
                 <span class="one"></span>
                 <label class="label">Interests (separate by comma and space)</label>
             </div>
             <div class="create-subheader">Where You're From</div>
             <div class="city-box">
                 <div class="input-container">
-                    <input type="text" required id="createCity">
+                    <input type="text"
+                           required
+                           id="createCity">
                     <span class="one"></span>
                     <label class="label">City</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" required id="createState">
+                    <input type="text"
+                           required
+                           id="createState">
                     <span class="one"></span>
                     <label class="label">State</label>
                 </div>
             </div>
             <div class="create-subheader">Work</div>
             <div class="input-container">
-                <input type="text" required id="createWorkCompany">
+                <input type="text"
+                       required
+                       id="createWorkCompany">
                 <span class="one"></span>
                 <label class="label">Company</label>
             </div>
             <div class="input-container">
-                <input type="text" required id="createWorkTitle">
+                <input type="text"
+                       required
+                       id="createWorkTitle">
                 <span class="one"></span>
                 <label class="label">Title</label>
             </div>
             <div class="input-container">
-                <input type="text" required id="createWorkFocus">
+                <input type="text"
+                       required
+                       id="createWorkFocus">
                 <span class="one"></span>
                 <label class="label">Work Focus</label>
             </div>
             <div class="input-container">
-                <input type="text" required id="createWorkSkills">
+                <input type="text"
+                       required
+                       id="createWorkSkills">
                 <span class="one"></span>
                 <label class="label">skills</label>
             </div>
             <div class="password-box">
                 <div class="input-container">
-                    <input type="password" required id="createPassword">
+                    <input type="password"
+                           required
+                           id="createPassword">
                     <span class="one"></span>
                     <label class="label">*Password</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" required id="createPasswordConfirmation">
+                    <input type="text"
+                           required
+                           id="createPasswordConfirmation">
                     <span class="one"></span>
                     <label class="label">*Confirm Password</label>
                 </div>
             </div>
             <div class="picture-select">
-                <input type="file" id="pictureUpload">
+                <input type="file"
+                       id="pictureUpload">
                 <label for="pictureUpload">Choose a Photo</label>
             </div>
             <div class="submit">
-                <button class="submit-btn primary" ng-click="submitNewProfile()">Submit</button>
+                <button class="submit-btn primary"
+                        ng-click="submitNewProfile()">Submit</button>
             </div>
-            <button class="close-modal tertiary" ng-click="closeCreateProfileModal()">
+            <button class="close-modal tertiary"
+                    ng-click="closeCreateProfileModal()">
                 <i class="fa fa-times"></i>
             </button>
             <div class="note">* = required field</div>
