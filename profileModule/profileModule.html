@@ -80,5 +80,23 @@
                                 <textarea id="newSkills" type="text" value=""></textarea>
                         </div>
                 </div>
+                <div class="profile-friends profile-content">
+                        <div class="profile-content-header">Your Connections</div>
+                        <div class="profile-content-body">
+                                <div class="connection" ng-repeat="connection in connectionsArray">
+                                        <div class="img" ng-click="openConnectionProfile(connection)">
+                                                <img src="{{connection.imgUrl}}">
+                                        </div>
+                                        <div class="connection-text">
+                                                <div class="name">
+                                                        {{connection.first_name}} {{connection.last_name}}
+                                                </div>
+                                                <div class="about">
+                                                        {{connection.about}}
+                                                </div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
         </div>
 </div>

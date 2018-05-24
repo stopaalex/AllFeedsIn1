@@ -34,12 +34,14 @@ myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
 
         if (!$rootScope.activeUser.connections) {
             $rootScope.database.ref('users/' + profileID).update({
-                connections: ',' + id
+                connections: id
             });
         } else if ($rootScope.activeUser.connections) {
             if (!$rootScope.activeUser.connections.includes(id)) {
                 $rootScope.database.ref('users/' + profileID).update({
                     connections: $rootScope.activeUser.connections + ',' + id
+                }).then(function() {
+                    $scope.$apply();
                 });
             }
         }

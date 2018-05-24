@@ -22,14 +22,17 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
     $scope.stringifySkills = stringifySkills;
     $scope.toggleEditProfile = toggleEditProfile;
     $scope.saveNewInfo = saveNewInfo;
+    $scope.getConnections = getConnections;
+    $scope.openConnectionProfile = openConnectionProfile;
 
     $scope.profileInformation;
     $scope.isActiveUserProfile = false;
     $scope.editingProfile = false;
+    $scope.connectionsArray = [];
 
 
     function goBack() {
-        $rootScope.selectedProfile = {};
+        // $rootScope.selectedProfile = {};
         $rootScope.selectedApp = document.querySelector('#goBack').dataset.module;
     }
 
@@ -93,7 +96,7 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
 
     function saveNewInfo() {
         $scope.editingProfile = false;
-        var profileID = $rootScope.selectedProfile.unique_ID; 
+        var profileID = $rootScope.selectedProfile.unique_ID;
 
         var newFirstName = document.querySelector('#newFirstName'),
             newLastName = document.querySelector('#newLastName'),
@@ -127,25 +130,54 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
                 skills: newSkills.value || '',
                 title: newWorkTitle.value || ''
             }
-        }).then(function() {
+        }).then(function () {
             $scope.editingProfile = false;
             window.localStorage.setItem('reloadedFromEdit', true);
             location.reload();
         })
     }
 
-    function initialize() {
-        if (!$rootScope.userTrail) {
-            $rootScope.userTrail = 'profile,'
+    function getConnections() {
+        if ($scope.profileInformation.connections) {
+            var connectionsStringArray = $scope.profileInformation.connections.split(',');
+            if (connectionsStringArray) {
+                connectionsStringArray.forEach(function (connection) {
+                    var ref = $rootScope.database.ref('/users/' + connection),
+                        connect;
+                    ref.once("value", function (snapshot) {
+                        connect = snapshot.val();
+                    }).then(function () {
+                        $scope.connectionsArray.push(connect);
+                        $scope.$apply();
+                    });
+                });
+            }
         } else {
-            $rootScope.userTrail = $rootScope.userTrail + 'profile,'
+            $scope.connectionsArray = [];
         }
-        var userTrailClear = $rootScope.userTrail.split(',');
-        var last = userTrailClear.length - 3;
-        var goBackLocation = document.querySelector('#goBack');
+    }
 
-        goBackLocation.dataset.module = userTrailClear[last];
-        goBackLocation.innerHTML = '<i class="fa fa-chevron-left"></i>' + userTrailClear[last];
+    function openConnectionProfile(connection) {
+        $rootScope.selectedProfile = connection;
+        initialize(true);
+    }
+
+    function initialize(reInitializing) {
+        if (reInitializing) {
+            console.log('reInitialize');
+        } else {
+            if (!$rootScope.userTrail) {
+                $rootScope.userTrail = 'profile,'
+            } else {
+                $rootScope.userTrail = $rootScope.userTrail + 'profile,'
+            }
+            var userTrailClear = $rootScope.userTrail.split(',');
+            var last = userTrailClear.length - 3;
+            var goBackLocation = document.querySelector('#goBack');
+
+            goBackLocation.dataset.module = userTrailClear[last];
+            goBackLocation.innerHTML = '<i class="fa fa-chevron-left"></i>' + userTrailClear[last];
+        }
 
 
         $scope.profileInformation = $rootScope.selectedProfile;
@@ -156,6 +188,7 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
         updateInterests();
         updateSkills();
 
+        getConnections();
     }
 
     initialize();

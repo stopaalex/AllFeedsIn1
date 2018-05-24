@@ -139,6 +139,7 @@
 
 .profile-content-body {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .profile-content div textarea {
@@ -222,4 +223,48 @@ textarea#newSkills {
 
 .new-photo label:hover {
     cursor: pointer;
+}
+
+.connection {
+    display:  flex;
+    align-items:  flex-end;
+    position:  relative;
+    width: calc(50% - 20px);
+    height: 85px;
+    overflow:  hidden;
+    margin: 10px;
+}
+
+.connection .img {
+    height: 75px;
+    width: 50px;
+    overflow: hidden;
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    border: 3px solid #e1e1e1;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.connection .img img {
+    height:  100%;
+}
+
+.connection .connection-text {
+    padding-left: 70px;
+    background: #f2f2f2;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%
+}
+
+.connection .connection-text .about {
+    white-space:  nowrap;
+    width: 95%;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
