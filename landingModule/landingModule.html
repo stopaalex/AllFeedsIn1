@@ -1,20 +1,22 @@
 <div class="landing-container" ng-controller="myLandingCtrl as myCtrl">
-    <div class="welcome-text">Welcome to your apps page {{activeUser.first_name}}</div>
-    <div class="welcome-text-scroller">
-        Take a look at <span> {{currentModule}}</span>
-    </div>
     <div class="modules-container">
         <div class="module Profile" ng-click="selectModule('Profile')">
-            <div class="icon"><i class="fa fa-user"></i></div>
             <div class="text">
                 Profile
             </div>
+            <div class="about">
+                Check out your profile and show off your...
+            </div>
+            <div class="icon"><i class="fa fa-user"></i></div>
         </div>
         <div ng-repeat="module in modules" class="module {{module.name}}" ng-click="selectModule(module.name)"> 
-            <div class="icon"><i class="{{module.fa}}"></i></div>
             <div class="text">
                 {{module.name}}
             </div>
+            <div class="about">
+                {{module.about | limitTo: 45}}...
+            </div>
+            <div class="icon"><i class="{{module.fa}}"></i></div>
         </div>
     </div>
 </div>

@@ -9,110 +9,65 @@
     align-items:  center;
 }
 
-.welcome-text {
-    position:  absolute;
-    top: 10%;
-    font-size: 1.25em;
-}
-
-.welcome-text-scroller {
-    position:  absolute;
-    top: calc(10% + 25px);
-    font-size: 1.15em;
-}
-
 .modules-container {
     display: flex;
     flex-wrap:  wrap;
-    justify-content:  center;
+    justify-content:  flex-start;
     align-items:  center;
-    width: 75%;
+    width: 85%;
 }
 
 .module {
-    width: calc(33% - 20px);
-    margin: 10px;
-    height: 250px;
-    border: 1px solid #e7e7e7;
-    background: #f2f2f2;
+    width: calc(25% - 40px);
+    height: 300px;
+    margin: 20px;
+    border: 1px solid #e1e1e1;
     display:  flex;
     flex-direction: column;
-    justify-content:  center;
-    align-items:  center;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-}
-
-.module .icon {
-    font-size: 4em;
-}
-
-.module .text {
-    font-size: 1.5em;
+    align-items: center;
+    cursor:  pointer;
+    position:  relative;
+    overflow:  hidden;
+    box-shadow: 3px 3px 20px rgba(0,0,0,0.1);
+    -webkit-transition: all 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .module:hover {
-    background: #e7e7e7
+    transform: scale(1.05);
+} 
+
+.module .text {
+    font-size:  1.2em;
+    padding: 20px 0 0 0;
 }
 
+.module .about {
+    font-size: 0.725em;
+    padding: 5px 20px 20px 20px
+}
 
+.module .icon {
+    position: absolute;
+    font-size: 8em;
+    bottom: 0.35em
+}
 
-/* CUSTOM MODULES STYLING */
 .module.Profile .icon {
-    position:  absolute;
-    left: -0.5em;
-    font-size: 13em;
+    color: #336699
 }
-
-.module.Networking .icon{
-    position: absolute;
-    bottom: -0.4em;
-    font-size: 10em;
+.module.Networking .icon {
+    color: #e86a12;
 }
-
-.module.Networking .text {
-    padding-bottom: 3em
-}
-
 .module.Stocks .icon {
-    position: absolute;
-    font-size: 10em;
+    color: #006a00
 }
-
-.module.Stocks .text {
-    position: absolute;
-    bottom: 0.3em
-}
-
 .module.Weather .icon {
-    position: absolute;
-    top: -0.5em;
-    right: -0.5em;
-    font-size: 15em
+    color: #ffbb00
 }
-
-.module.Weather .text {
-    padding-top: 3em
-}
-
 .module.Clock .icon {
-    position: absolute;
-    top: 0;
-    font-size: 5em;
+    color: #333333
 }
-
-.module.Clock .text {
-    padding-top: 2em
-}
-
 .module.Todos .icon {
-    position: absolute;
-    font-size: 8em
-}
-
-.module.Todos .text {
-    position: absolute;
-    top: 1.9em;
-    padding-left: 1em
+    color: #aa2929
 }

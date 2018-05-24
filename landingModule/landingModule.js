@@ -15,28 +15,33 @@ myLanding.directive('myLanding', function () {
 myLanding.controller('myLandingCtrl', function ($scope, $rootScope) {
 
     $scope.selectModule = selectModule;
-    $scope.loopText = loopText;
+    $scope.createCustomBackgrounds = createCustomBackgrounds;
     $scope.initialize = initialize;
 
     $scope.modules = [
         {
             name: 'Networking',
+            about: 'Connect with your friends and share your thoughts, ideas, and modules with them!',
             fa: 'fa fa-users'
         },
         {
             name: 'Stocks',
+            about: 'Follow the markets in real time.  Save stocks you\'re interested in.  Make Money.',
             fa: 'fa fa-chart-line'
         },
         {
             name: 'Weather',
+            about: 'Track the forcast for your area to make sure you\'re prepared.',
             fa: 'fa fa-sun'
         },
         {
             name: 'Clock',
+            about: 'Set Timers, alarms, and stay on track.',
             fa: 'fa fa-clock'
         },
         {
             name: 'Todos',
+            about: 'Create a list and mark as complete to make sure you don\'t fall hehind on anything!',
             fa: 'fa fa-list-ul'
         }
     ];
@@ -51,16 +56,8 @@ myLanding.controller('myLandingCtrl', function ($scope, $rootScope) {
         $rootScope.selectedApp = selectModule;
     }
 
-    function loopText() {
-        $scope.loopText = setInterval(function () {
-            var randomNum = Math.floor(Math.random() * 6);
-            $scope.modules.forEach(function (module, index) {
-                if (index === randomNum) {
-                    $scope.currentModule = module.name;
-                    $scope.$apply();
-                }
-            });
-        }, 1500);
+    function createCustomBackgrounds() {
+        var mods = document.querySelectorAll('.module');
     }
 
     function initialize() {
@@ -69,7 +66,9 @@ myLanding.controller('myLandingCtrl', function ($scope, $rootScope) {
         } else {
             $rootScope.userTrail = $rootScope.userTrail + 'landing,'
         }
-        loopText();
+        setTimeout(function() {
+            createCustomBackgrounds();
+        }, 10);
     }
 
     initialize();

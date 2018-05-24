@@ -8,7 +8,7 @@ nav {
     height: 42px;
     display:  flex;
     align-items:  center;
-    background: #4FDE70;
+    background: linear-gradient(to right, #1d5184, #2e6ea3, #408cc2, #52abe0, #66ccff);
     transition: 500ms;
 }
 
@@ -27,7 +27,7 @@ nav {
     align-items:  center;
     font-size:  1.25em;
     font-weight: 600;
-    color: #3abb57;
+    color: #2e6ea3;
     cursor: pointer;
 }
 

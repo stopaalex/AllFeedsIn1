@@ -19,12 +19,12 @@ button {
 }
 
 button.primary {
-    background: #2CA0B6;
+    background: #2e6ea3;
     color: #FFFFFF;
 }
 button.primary:hover,
 button.primary:focus {
-    background: #0B89A1;
+    background: #1d5184;
 }
 
 button.secondary {
@@ -84,7 +84,7 @@ button.tertiary:focus {
     position: absolute;
     width: 0px;
     height: 2px;
-    background: #2CA0B6;
+    background: #2e6ea3;
     margin-top: 13px;
     z-index: 1;
     transition: 0.25s;
@@ -118,7 +118,7 @@ button.tertiary:focus {
     background: #e7e7e7;
     padding: 4px 7px;
     margin: 5px;
-    color: #076b7d;
+    color: #2e6ea3;
     cursor: pointer;
 }
 
