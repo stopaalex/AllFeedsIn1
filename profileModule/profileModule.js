@@ -158,6 +158,7 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
     }
 
     function openConnectionProfile(connection) {
+        $scope.connectionsArray = [];
         $rootScope.selectedProfile = connection;
         initialize(true);
     }

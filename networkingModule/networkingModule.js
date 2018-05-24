@@ -15,6 +15,7 @@ myNetworking.directive('myNetworking', function () {
 myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
 
     $scope.reloadUsers = reloadUsers;
+    $scope.loadPosts = loadPosts;
     $scope.initialize = initialize;
     $scope.goBack = goBack;
     $scope.openProfile = openProfile;
@@ -72,6 +73,23 @@ myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
         });
     }
 
+    function loadPosts() {
+        $scope.posts = [];
+        var tempPosts = [];
+        var ref = $rootScope.database.ref("posts");
+
+        ref.once("value", function (snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                tempPosts.push(childSnapshot.val());
+            });
+        }).then(function(){
+            tempPosts.forEach(function(post) {
+                $scope.posts.push(post);
+            });
+            $scope.$apply();
+        });
+    }
+
     function initialize() {
         if (!$rootScope.userTrail) {
             $rootScope.userTrail = 'networking,'
@@ -85,6 +103,7 @@ myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
         goBackLocation.dataset.module = userTrailClear[last];
         goBackLocation.innerHTML = '<i class="fa fa-chevron-left"></i>' + userTrailClear[last];
         reloadUsers();
+        loadPosts();
     }
 
     initialize();

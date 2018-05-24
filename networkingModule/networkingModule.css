@@ -90,3 +90,44 @@
 .add-connections:hover {
     color: #000000
 }
+
+.network-feed-post .img {
+    width: 40px;
+    height: 65px;
+    overflow: hidden;
+    display:  flex;
+    justify-content:  center;
+    align-items:  center;
+    border: 3px solid #f2f2f2;
+    border-radius: 3px;
+    position: absolute;
+    top: -15px;
+    left: 5px;
+}
+
+.network-feed-post .img img {
+    height: 100%;
+}
+
+.network-feed-post {
+    background: #e7e7e7;
+    position:  relative;
+    padding: 10px;
+    margin: 30px 0 0 0;
+}
+
+.network-feed-post .header {
+    padding-left: 46px;
+}
+
+.network-feed-post .header .name {
+    font-size: 1em;
+}
+
+.network-feed-post .header .date {
+    font-size: 0.8em
+}
+
+.network-feed-post .content {
+    padding-top: 10px;
+}
