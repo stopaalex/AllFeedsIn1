@@ -30,7 +30,8 @@
 }
 
 .module {
-    width: 33%;
+    width: calc(33% - 20px);
+    margin: 10px;
     height: 250px;
     border: 1px solid #e7e7e7;
     background: #f2f2f2;
@@ -39,6 +40,8 @@
     justify-content:  center;
     align-items:  center;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
 .module .icon {
@@ -51,4 +54,65 @@
 
 .module:hover {
     background: #e7e7e7
+}
+
+
+
+/* CUSTOM MODULES STYLING */
+.module.Profile .icon {
+    position:  absolute;
+    left: -0.5em;
+    font-size: 13em;
+}
+
+.module.Networking .icon{
+    position: absolute;
+    bottom: -0.4em;
+    font-size: 10em;
+}
+
+.module.Networking .text {
+    padding-bottom: 3em
+}
+
+.module.Stocks .icon {
+    position: absolute;
+    font-size: 10em;
+}
+
+.module.Stocks .text {
+    position: absolute;
+    bottom: 0.3em
+}
+
+.module.Weather .icon {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    font-size: 15em
+}
+
+.module.Weather .text {
+    padding-top: 3em
+}
+
+.module.Clock .icon {
+    position: absolute;
+    top: 0;
+    font-size: 5em;
+}
+
+.module.Clock .text {
+    padding-top: 2em
+}
+
+.module.Todos .icon {
+    position: absolute;
+    font-size: 8em
+}
+
+.module.Todos .text {
+    position: absolute;
+    top: 1.9em;
+    padding-left: 1em
 }

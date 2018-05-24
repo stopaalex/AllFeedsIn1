@@ -4,13 +4,13 @@
         Take a look at <span> {{currentModule}}</span>
     </div>
     <div class="modules-container">
-        <div class="module" ng-click="selectModule('Profile')">
+        <div class="module Profile" ng-click="selectModule('Profile')">
             <div class="icon"><i class="fa fa-user"></i></div>
             <div class="text">
                 Profile
             </div>
         </div>
-        <div ng-repeat="module in modules" class="module" ng-click="selectModule(module.name)"> 
+        <div ng-repeat="module in modules" class="module {{module.name}}" ng-click="selectModule(module.name)"> 
             <div class="icon"><i class="{{module.fa}}"></i></div>
             <div class="text">
                 {{module.name}}
