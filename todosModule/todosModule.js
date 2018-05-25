@@ -89,6 +89,7 @@ myTodos.controller('myTodosCtrl', function ($scope, $rootScope) {
         if (typeof item === 'object') {
             $scope.$apply();
         }
+        window.localStorage.setItem('savedTodos', JSON.stringify($scope.todos));
     }
 
     function goBack() {
