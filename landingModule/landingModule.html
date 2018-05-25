@@ -14,7 +14,7 @@
                 {{module.name}}
             </div>
             <div class="about">
-                {{module.about | limitTo: 45}}...
+                {{module.about | limitTo: 70}}<span ng-if="module.about.length > 75">...</span>
             </div>
             <div class="icon"><i class="{{module.fa}}"></i></div>
         </div>

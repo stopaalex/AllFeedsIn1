@@ -1,0 +1,132 @@
+.todos-container {
+    position:  absolute;
+    top: 0;
+    right: 0;
+    bottom:  0;
+    left: 0;
+    overflow: auto;
+}
+
+.todos-container::-webkit-scrollbar,
+.todos-content-container::-webkit-scrollbar {
+    width: 0.35em;
+}
+ 
+.todos-container::-webkit-scrollbar-track,
+.todos-content-container::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+ 
+.todos-container::-webkit-scrollbar-thumb,
+.todos-content-container::-webkit-scrollbar-thumb {
+  background: #FFFFFF;
+  border-radius: 0.175em;
+}
+
+.todos-container:hover::-webkit-scrollbar-thumb,
+.todos-content-container:hover::-webkit-scrollbar-thumb {
+    background: #e7e7e7;
+}
+
+.todos-content-container {
+    position:  absolute;
+    top: 34px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display:  flex;
+    justify-content:  center;
+    align-items: flex-start;
+}
+
+.todos-paper {
+    width: 50%;
+    min-height: 500px;
+    background: #fffce7;
+    border-radius:  5px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    padding: 30px 20px;
+    position: relative;
+}
+
+.todos-paper::after {
+    content:  '';
+    position:  absolute;
+    left: 40px;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+    background:  red;
+}
+
+.todos-paper .header {
+    color: #666;
+    border-bottom: 1px solid #cdcdff;
+    padding: 5px 5px 5px 35px;
+    font-size: 1.2em;
+}
+
+.todo {
+    display:  flex;
+    align-items:  center;
+    border-bottom: 1px solid #cdcdff;
+    padding-left: 30px;
+    cursor: pointer;
+}
+
+.todos-new-todo {
+    display: flex;
+    margin: 0 0 20px 0;
+}
+
+.todos-new-todo >div {
+    flex: 1;
+}
+
+.todos-new-todo button {
+    position: absolute;
+    z-index: 1;
+    right: 20px;
+    margin-top: 7px
+}
+
+.todos-new-todo .input-container label,
+.todos-new-todo .input-container input {
+    padding-left: 45px;
+}
+
+.item {
+    flex: 1;
+}
+
+.item.complete {
+    text-decoration: line-through;
+}
+
+.todo .check {
+    padding: 0 10px;
+}
+
+.todo .check input {
+    position:  relative;
+    cursor: pointer;
+    outline: none;
+}
+
+.todo .check input::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    background: #fffce7;
+    border: 1px solid #e7e7e7;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+}
+
+.todo .check input.complete::after {
+    content: '\2714'
+}

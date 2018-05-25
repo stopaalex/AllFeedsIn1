@@ -1,9 +1,30 @@
 .network-content-container {
     position: absolute;
-    top: 43px;
+    top: 34px;
     right: 0;
     bottom: 0;
     left: 0;
+}
+
+.feed-content-container::-webkit-scrollbar,
+.users-content-container::-webkit-scrollbar {
+    width: 0.35em;
+}
+ 
+.feed-content-container::-webkit-scrollbar-track,
+.users-content-container::-webkit-scrollbar-track {
+    background: #FFFFFF;
+}
+ 
+.feed-content-container::-webkit-scrollbar-thumb,
+.users-content-container::-webkit-scrollbar-thumb {
+  background: #FFFFFF;
+  border-radius: 0.175em;
+}
+
+.feed-content-container:hover::-webkit-scrollbar-thumb,
+.users-content-container:hover::-webkit-scrollbar-thumb {
+    background: #e7e7e7;
 }
 
 .feed-users {
@@ -18,7 +39,7 @@
 .network-feed-new-post {
     margin: 10px 20px 0 0;
     position: relative;
-    padding-right: 0px
+    padding-right: 70px
 }
 
 .network-feed-new-post button {
@@ -29,10 +50,18 @@
 }
 
 .feed-users >div {
-    flex: 1;
-    width: 50%;
+    /* flex: 1;
+    width: 50%; */
     height: 100%;
     overflow: auto;
+    padding: 0 5px;
+}
+
+.feed-users  >div:first-of-type {
+    flex: 3;
+}
+.feed-users >div:last-of-type {
+    flex: 2;
 }
 
 .network-user .img {
@@ -145,4 +174,22 @@
 
 .network-feed-post .content {
     padding-top: 10px;
+}
+
+.feed .head,
+.users .head {
+    border-bottom: 1px solid #e7e7e7;
+    font-size: 1.25em;
+    padding: 0 10px 2px 10px;
+    /* margin: 10px 0 */
+}
+
+.feed-content-container {
+    height: calc(100% - 27px);
+    overflow: auto
+}
+
+.users-content-container {
+    height: calc(100% - 27px);
+    overflow: auto;
 }

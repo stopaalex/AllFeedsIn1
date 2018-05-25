@@ -1,3 +1,40 @@
-<div class="todos-container" ng-controller="myTodosCtrl as myCtrl">
-        <button ng-click="goBack(this.data-module)" class="tertiary go-back" id="goBack"></button>
+<div class="todos-container"
+     ng-controller="myTodosCtrl as myCtrl">
+        <button ng-click="goBack(this.data-module)"
+                class="tertiary go-back"
+                id="goBack"></button>
+        <div class="todos-content-container">
+                <div class="todos-paper">
+                        <div class="header">My Todo List</div>
+                        <div class="todos-new-todo">
+                                <div class="input-container">
+                                        <input type="text"
+                                               required
+                                               id="newTodo">
+                                        <span class="one"></span>
+                                        <label class="label">New Todo</label>
+                                </div>
+                                <button class="tertiary" ng-click="addNewTodo()">
+                                        <i class="fa fa-plus"></i>
+                                </button>
+                        </div>
+                        <div class="todos">
+                                <div class="todo"
+                                     ng-repeat="todo in todos track by $index">
+                                        <div class="check">
+                                                <div class="checkboxCustom"></div>
+                                                <input type="checkbox" id="{{$index}}">
+                                        </div>
+                                        <div ng-click="checkItem($index)" class="item" ng-class="{'complete' :todo.complete}">
+                                                {{todo.item}}
+                                        </div>
+                                        <div class="remove">
+                                                <button class="tertiary" ng-click="removeItem(todo)">
+                                                        <i class="fa fa-times"></i>
+                                                </button>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+        </div>
 </div>
