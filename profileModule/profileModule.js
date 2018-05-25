@@ -159,6 +159,11 @@ myProfile.controller('myProfileCtrl', function ($scope, $rootScope) {
 
     function openConnectionProfile(connection) {
         $scope.connectionsArray = [];
+        if (connection.unique_ID === $rootScope.activeUser.unique_ID) {
+            $scope.isActiveUserProfile = true;
+        } else {
+            $scope.isActiveUserProfile = false;
+        }
         $rootScope.selectedProfile = connection;
         initialize(true);
     }

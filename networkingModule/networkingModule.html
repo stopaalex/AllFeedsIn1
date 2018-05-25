@@ -4,6 +4,14 @@
                 <div class="feed-users">
                         <div class="feed">
                                 <div>Feed</div>
+                                <div class="network-feed-new-post">
+                                        <div class="input-container">
+                                                <input type="text" required id="newPost">
+                                                <span class="one"></span>
+                                                <label class="label">What's on your mind, {{activeUser.first_name}}?</label>
+                                        </div>
+                                        <button class="primary" ng-click="addNewPost()">Post</button>
+                                </div>
                                 <div class="network-feed-post" ng-repeat="post in posts">
                                         <div class="img">
                                                 <img src="{{post.created_by.imgUrl}}">
@@ -24,7 +32,8 @@
                                         <div class="text">
                                                 <div class="name">{{user.first_name}} {{user.last_name}}</div>
                                                 <div class="about">{{user.about}}</div>
-                                                <button class="add-connections" ng-click="addConnections(user.unique_ID)"><i class="fa fa-address-card"></i> Connect</button>
+                                                <button class="add-connections" ng-click="addConnections(user.unique_ID)">
+                                                        <i class="fa fa-address-card"></i> Connect</button>
                                         </div>
                                 </div>
                         </div>

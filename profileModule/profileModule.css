@@ -55,6 +55,7 @@
     height: 100%;
     position: relative;
     z-index: 1;
+    object-fit: cover;
 }
 
 .profile-header {
@@ -250,6 +251,7 @@ textarea#newSkills {
 
 .connection .img img {
     height:  100%;
+    object-fit: cover;
 }
 
 .connection .connection-text {

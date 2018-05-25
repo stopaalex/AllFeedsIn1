@@ -16,6 +16,7 @@ myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
 
     $scope.reloadUsers = reloadUsers;
     $scope.loadPosts = loadPosts;
+    $scope.addNewPost = addNewPost;
     $scope.initialize = initialize;
     $scope.goBack = goBack;
     $scope.openProfile = openProfile;
@@ -86,7 +87,40 @@ myNetworking.controller('myNetworkingCtrl', function ($scope, $rootScope) {
             tempPosts.forEach(function(post) {
                 $scope.posts.push(post);
             });
+            $scope.posts.sort(function (a, b) {
+                if (a.timestamp > b.timestamp) {
+                    return -1
+                } else if (a.timestamp < b.timestamp) {
+                    return 1;
+                } else {
+                    return 0
+                }
+              });
             $scope.$apply();
+        });
+    }
+
+    function addNewPost() {
+        var content = document.querySelector('#newPost').value;
+        var date = new Date(),
+            dateDay = date.getDate(),
+            dateMonth = date.getMonth(),
+            dateYear = date.getFullYear(),
+            dateMins = date.getMinutes(),
+            dateHours = date.getHours();
+
+        var randomPostID = Math.floor(Math.random() * 99999999999999999999);
+
+        var ref = $rootScope.database.ref('posts/' + randomPostID).set({
+            content: content,
+            created_by: $rootScope.activeUser,
+            date_string: dateMonth + '/' + dateDay + '/' + dateYear + '/' + ' ' + dateHours + ':' + dateMins,
+            timestamp: firebase.database.ServerValue.TIMESTAMP
+        }).then(function() {
+            console.log('ADDED');
+            content = '';
+            $scope.$apply();
+            loadPosts();
         });
     }
 
