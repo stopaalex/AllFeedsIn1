@@ -15,85 +15,40 @@ myTodos.directive('myTodos', function () {
 myTodos.controller('myTodosCtrl', function ($scope, $rootScope) {
 
     $scope.initialize = initialize;
+    $scope.getTodos = getTodos;
     $scope.goBack = goBack;
     $scope.addNewTodo = addNewTodo;
     $scope.removeItem = removeItem;
     $scope.applyChecks = applyChecks;
     $scope.checkItem = checkItem;
 
-    $scope.todos = [
-        {
-            item: 'Add Items to Todo List',
-            complete: false
-        }
-    ]
+    $scope.todos = []
 
-    function addNewTodo() {
-        var newTodo = document.querySelector('#newTodo');
-        $scope.todos.push({
-            item: newTodo.value,
-            complete: false
-        });
-        newTodo.value = '';
-        window.localStorage.setItem('savedTodos', JSON.stringify($scope.todos));
-        setTimeout(function() {
+    function getTodos() {
+        $rootScope.database.ref('users/' + $rootScope.activeUser.unique_ID + '/todos/').once("value", function (snapshot) {
+            $scope.todos = [];
+            snapshot.forEach(function (childSnapshot) {
+                $scope.todos.push(childSnapshot.val());
+            });
+        }).then(function () {
+            $scope.$apply();
+            applyChecks();
             createListeners();
-        }, 100);
-    }
-
-    function removeItem(itemToRemove) {
-        $scope.todos.forEach(function (todo, index) {
-            if (todo === itemToRemove) {
-                $scope.todos.splice(index, 1);
-                window.localStorage.setItem('savedTodos', JSON.stringify($scope.todos));
-                return;
-            }
         });
     }
 
     function applyChecks() {
-        $scope.todos.forEach(function (todo, index) {
+        $scope.todos.forEach(function (todo) {
             if (todo.complete) {
-                var input = document.getElementById(index);
+                var input = document.getElementById(todo.id);
                 input.checked = true;
                 input.classList.add('complete');
+            } else if (!todo.complete) {
+                var input = document.getElementById(todo.id);
+                input.checked = false;
+                input.classList.remove('complete');
             }
         });
-    }
-
-    function checkItem(item) {
-        $scope.todos.forEach(function (todo, index) {
-            if (index.toString() === item.id || index === item) {
-                if (typeof item === 'object') {
-                    if (item.checked) {
-                        todo.complete = true;
-                        item.classList.add('complete')
-                    } else if (!item.checked) {
-                        todo.complete = false;
-                        item.classList.remove('complete')
-                    }
-                } else {
-                    var input = document.getElementById(item);
-                    if (!input.checked) {
-                        todo.complete = true;
-                        input.classList.add('complete');
-                        input.checked = true;
-                    } else if (input.checked) {
-                        todo.complete = false;
-                        input.classList.remove('complete')
-                        input.checked = false;
-                    }
-                }
-            }
-        });
-        if (typeof item === 'object') {
-            $scope.$apply();
-        }
-        window.localStorage.setItem('savedTodos', JSON.stringify($scope.todos));
-    }
-
-    function goBack() {
-        $rootScope.selectedApp = document.querySelector('#goBack').dataset.module;
     }
 
     function createListeners() {
@@ -103,6 +58,51 @@ myTodos.controller('myTodosCtrl', function ($scope, $rootScope) {
                 checkItem(check);
             });
         });
+    }
+
+    function addNewTodo() {
+        var newTodo = document.querySelector('#newTodo'),
+            randomNum = Math.floor(Math.random() * 99999);
+
+        $rootScope.database.ref('users/' + $rootScope.activeUser.unique_ID + '/todos/' + randomNum + '/').set({
+            item: newTodo.value,
+            complete: false,
+            id: randomNum
+        }).then(function () {
+            newTodo.value = '';
+            getTodos();
+        });
+    }
+
+    function removeItem(itemToRemove) {
+        var listItemID = itemToRemove.id;
+        $rootScope.database.ref('users/' + $rootScope.activeUser.unique_ID + '/todos/' + listItemID + '/').remove().then(function() {
+            getTodos();
+        });
+    }
+
+    function checkItem(item) {
+        var checkedBool,
+            inputElement,
+            listItemID;
+        if (typeof item === 'number') {
+            inputElement = document.getElementById(item);
+            checkedBool = !inputElement.checked;
+            listItemID = item;
+        } else {
+            inputElement = item;
+            checkedBool = inputElement.checked;
+            listItemID = item.id;
+        }
+        $rootScope.database.ref('users/' + $rootScope.activeUser.unique_ID + '/todos/' + listItemID + '/').update({
+            complete: checkedBool,
+        }).then(function () {
+            getTodos();
+        });
+    }
+
+    function goBack() {
+        $rootScope.selectedApp = document.querySelector('#goBack').dataset.module;
     }
 
     function initialize() {
@@ -118,12 +118,7 @@ myTodos.controller('myTodosCtrl', function ($scope, $rootScope) {
         goBackLocation.dataset.module = userTrailClear[last];
         goBackLocation.innerHTML = '<i class="fa fa-chevron-left"></i>' + userTrailClear[last];
 
-        $scope.todos = JSON.parse(window.localStorage.getItem('savedTodos')) || [];
-
-        setTimeout(function () {
-            applyChecks();
-            createListeners();
-        }, 100);
+        getTodos();
     }
 
     initialize();

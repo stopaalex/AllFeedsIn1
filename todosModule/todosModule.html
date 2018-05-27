@@ -23,9 +23,9 @@
                                      ng-repeat="todo in todos track by $index">
                                         <div class="check">
                                                 <div class="checkboxCustom"></div>
-                                                <input type="checkbox" id="{{$index}}">
+                                                <input type="checkbox" id="{{todo.id}}">
                                         </div>
-                                        <div ng-click="checkItem($index)" class="item" ng-class="{'complete' :todo.complete}">
+                                        <div ng-click="checkItem(todo.id)" class="item" ng-class="{'complete' :todo.complete}">
                                                 {{todo.item}}
                                         </div>
                                         <div class="remove">
