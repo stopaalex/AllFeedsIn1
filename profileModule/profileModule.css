@@ -73,6 +73,7 @@
     padding: 0 0 0 250px;
     width: 100%;
     background: #f2f2f2;
+    border-radius: 5px;
 }
 
 .header-info >div {

@@ -1,3 +1,16 @@
 <div class="clock-container" ng-controller="myClockCtrl as myCtrl">
         <button ng-click="goBack(this.data-module)" class="tertiary go-back" id="goBack"></button>
+        <div class="clock-content-container">
+                <div class="clock-actual-content">
+                        <div class="clock-bezel">
+                                <div class="clock-time">
+                                        <div id="hour"><span ng-if="currentHours < 10">0</span>{{currentHours}}</div>
+                                        <div id="min"><span ng-if="currentMins < 10">0</span>{{currentMins}}</div>
+                                        <div id="sec"><span ng-if="currentSeconds < 10">0</span>{{currentSeconds}}</div>
+                                </div>
+                                <div class="min-hand" id="minHand"></div>
+                                <div class="sec-hand" id="secHand"></div>
+                        </div>
+                </div>
+        </div>
 </div>
