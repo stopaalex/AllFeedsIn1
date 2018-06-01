@@ -20,15 +20,61 @@ nav {
     position:  absolute;
     left: 10px;
     height: 30px;
-    width: 50px;
-    background: #FFFFFF;
-    display:  flex;
+    width: 30px;
+    /* background: #FFFFFF; */
+    /* display:  flex;
     justify-content:  center;
     align-items:  center;
     font-size:  1.25em;
     font-weight: 600;
-    color: #2e6ea3;
+    color: #2e6ea3; */
     cursor: pointer;
+}
+
+.globe-container {
+    position: relative;
+    height:  100%;
+    width: 100%;
+}
+
+.globe-border,
+.globe-vert,
+.globe-horz {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #FFFFFF;
+    border-radius: 100%;
+}
+
+.globe-vert {
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+  height: calc(100% + 0px);
+  transform: rotateY(60deg);
+  overflow: hidden;
+  border-width: 3px;
+}
+
+.globe-horz {
+  transform: rotateX(125deg);
+  border-bottom: none;
+  border-right: none;
+  border-left: none;
+  width: calc(100% + 0px);
+  border-width: 3px;
+}
+.home-button .title {
+    position:  absolute;
+    top: 7px;
+    left: 19px;
+    color:  #FFF;
+    font-weight:  600;
+    padding-left: 8px;
+    background: linear-gradient(to right, #1e5888, #1d5f95);
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .home-content-container {

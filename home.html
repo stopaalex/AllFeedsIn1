@@ -2,10 +2,18 @@
     <nav ng-class="{'larger-nav': !loggedIn}">
         <div class="home-button"
              onclick="location.reload()">
-            <span>A</span>
+            <!-- <span>A</span>
             <span>F</span>
             <span>i</span>
-            <span>1</span>
+            <span>1</span> -->
+            <div class="globe-container">
+                <div class="globe-border"></div>
+                <div class="globe-vert"></div>
+                <div class="globe-horz"></div>
+            </div>
+            <div class="title">
+                APPCeption
+            </div>
         </div>
         <div class="home-menu-container">
             <div class="open jelly-menu" ng-click="openProfile(); toggleJellyMenu()"><i class="fa fa-user"></i></div>
