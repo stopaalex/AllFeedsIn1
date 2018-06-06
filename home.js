@@ -313,7 +313,7 @@ myHome.controller('myHomeCtrl', function ($scope, $rootScope) {
             if (JSON.stringify(e.target.classList).includes('go-back')) {
             }
 
-        })
+        });
     }
 
     initialize();
